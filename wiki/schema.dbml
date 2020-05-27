@@ -1,0 +1,173 @@
+Enum shifts {
+    matutino
+    vespertino
+    nocturno
+    jornada_acumulada
+}
+
+Enum resource {
+    user_roles
+    users
+    patientes
+    certificates
+    prescriptions
+    prescription_fills
+    prescription_returns
+    prescription_drugs
+    drugs
+    batches
+    inputs
+    outputs
+    purchase_details
+    transfer_details
+}
+
+
+Enum certificate_type {
+    professional
+    specialty
+}
+
+Enum input_type {
+    purchase
+    transfer
+    other
+}
+
+Enum output_type {
+    expiration
+    prescription_fill
+    other
+}
+
+Enum sex {
+    male
+    female
+    other
+}
+
+Table users {
+    username varchar [pk]
+    first_name varchar
+    last_name varchar
+    password varchar
+    shift shifts
+}
+
+Table roles {
+    code varchar [pk]
+}
+
+Table permissions {
+    id int [pk,increment]
+    resource resource
+    action varchar
+}
+
+Table role_permissions {
+    role varchar [ref: > roles.code]
+    permission int [ref: > permissions.id]
+}
+
+Table user_roles {
+    user varchar [ref: > users.username]
+    role varchar [ref: > roles.code]
+}
+
+Table certificates {
+    code varchar [pk]
+    user varchar [ref: > users.username]
+    college varchar
+    type certificate_type
+}
+
+Table specialty_detail {
+    certificate varchar [ref: > certificates.code]
+    specialty varchar
+}
+
+Table drugs {
+    code varchar [pk]
+    name varchar
+    presentation varchar
+    units int
+}
+
+Table inputs {
+    id int [pk,increment]
+    supplier varchar 
+    address varchar
+    comments varchar
+    type input_type
+}
+
+Table batches {
+    code varchar [pk]
+    input int [ref: > inputs.id]
+    drug varchar [ref: > drugs.code]
+    expires datetime
+    quantity int
+    lab varchar
+}
+
+Table purchase_details {
+    input int [ref: > inputs.id]
+    invoice varchar
+    sanitary_license varchar
+}
+
+Table transfer_details {
+    input int [ref: > inputs.id]
+    document varchar
+}
+
+Table outputs {
+    id int [pk,increment]
+    sign varchar [ref: > users.username]
+    batch varchar [ref: > batches.code]
+    quantity int
+    comment varchar
+    type output_type
+}
+
+Table patients {
+    file varchar [pk]
+    first_name varchar
+    last_name varchar
+    curp varchar
+    birthdate date
+    sex sex
+    address varchar
+    floor varchar
+    bed varchar
+    diagnostic varchar
+    arrival_time datetime
+    departure_time datetime
+}
+
+Table prescriptions {
+    code int [pk,increment]
+    patient varchar [ref: > patients.file]
+    doctor varchar [ref: > certificates.code]
+    issue_date datetime
+    comments varchar
+}
+
+Table prescription_drugs {
+    prescription int [ref: > prescriptions.code]
+    drug varchar [ref: > drugs.code]
+    quantity int
+    dose varchar
+    administration_route varchar
+}
+
+Table prescription_fills {
+    prescription int [ref: > prescriptions.code]
+    output int [ref: > outputs.id]
+}
+
+Table prescription_returns {
+    prescription int [ref: > prescriptions.code]
+    batch varchar [ref: > batches.code]
+    quantity int
+}
