@@ -136,7 +136,7 @@ Table patients {
     last_name varchar
     curp varchar
     birthdate date
-    gender gender
+    sex sex
     address varchar
     floor varchar
     bed varchar
@@ -163,7 +163,7 @@ Table prescription_drugs {
 
 Table prescription_fills {
     prescription int [ref: > prescriptions.code]
-    output varchar [ref: > outputs.id]
+    output int [ref: > outputs.id]
 }
 
 Table prescription_returns {
@@ -171,4 +171,3 @@ Table prescription_returns {
     batch varchar [ref: > batches.code]
     quantity int
 }
-

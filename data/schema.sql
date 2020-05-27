@@ -88,7 +88,7 @@ CREATE TABLE `patients` (
   `last_name` varchar(255),
   `curp` varchar(255),
   `birthdate` date,
-  `gender` gender,
+  `sex` ENUM ('male', 'female', 'other'),
   `address` varchar(255),
   `floor` varchar(255),
   `bed` varchar(255),
@@ -115,7 +115,7 @@ CREATE TABLE `prescription_drugs` (
 
 CREATE TABLE `prescription_fills` (
   `prescription` int,
-  `output` varchar(255)
+  `output` int
 );
 
 CREATE TABLE `prescription_returns` (
