@@ -5,6 +5,7 @@ import sys
 import numpy as np
 import random
 import requests
+import schema_interpreter
 
 word_site = 'http://www.desiquintans.com/downloads/nounlist/nounlist.txt'
 
@@ -25,17 +26,6 @@ def random_time():
 
 def random_datetime():
     return random_date()+" "+random_time()
-
-dbml_path = sys.argv[1];
-
-with open(dbml_path, 'r') as f:
-    dbml = f.read();
-
-dbml_words = dbml.split()
-
-enums = {}
-def build_enum(enum, vals):
-    enums[enum] = vals
 
 def build_table(table, cols, dtypes):
     csv_cols = ','.join(cols)
@@ -62,45 +52,7 @@ def build_table(table, cols, dtypes):
         print(sql+"\n")
     print("\n\n")
 
-state=0
-for word in dbml_words:
-    if state == 0:
-        if word == 'Enum': state=10
-        elif word == 'Table': state=20
-        else: state = -1
-    elif state == 10:
-        state=11
-        enum=word
-        vals=[]
-    elif state == 11:
-        if word == '{': state = 12
-        else: state = -1
-    elif state == 12:
-        if word == '}':
-            state = 0
-            build_enum(enum, vals)
-        else: vals.append(word)
-    elif state == 20:
-        state=21
-        table=word
-        columns=[]
-        dtypes=[]
-    elif state == 21:
-        if word == '{': state = 22
-        else: state = -1
-    elif state == 22:
-        if word == '}':
-            state = 0
-            build_table(table, columns, dtypes)
-        elif word[0] == '[': state = 25
-        else:
-            state = 23
-            columns.append(word)
-    elif state == 23:
-        state = 22
-        dtypes.append(word)
-    if state == 25:
-        if word[len(word)-1] == ']':
-            if '.' in word:
-                dtypes[-1]='ref.'+word[:-1]
-            state=22
+[enums, tables] = schema_interpreter.interpret()
+
+for table in tables:
+    build_table(table['table'], table['cols'], table['dtypes'])
