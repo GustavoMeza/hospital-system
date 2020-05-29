@@ -1,22 +1,22 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO users (username, first_name, last_name, password, shift) VALUES (?, ?, ?, ?, ?);";
-        var escapedValues = [obj.username, obj.firstName, obj.lastName, obj.password, obj.shift];
+        var sql = "INSERT INTO prescription_drugs (prescription, drug, quantity, dose, administration_route) VALUES (?, ?, ?, ?, ?);";
+        var escapedValues = [obj.prescription, obj.drug, obj.quantity, obj.dose, obj.administrationRoute];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
-        var sql = "SELECT * FROM users;";
+        var sql = "SELECT * FROM prescription_drugs;";
         var escapedValues = []
         return connector.execute(sql, escapedValues);
     },
     readById: (id) => {
-        var sql = "SELECT * FROM users WHERE id=?";
+        var sql = "SELECT * FROM prescription_drugs WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE SET username = ?, first_name = ?, last_name = ?, password = ?, shift = ? WHERE id = ?";
-        var escapedValues = [obj.username, obj.firstName, obj.lastName, obj.password, obj.shift, obj.id];
+        var sql = "UPDATE SET prescription = ?, drug = ?, quantity = ?, dose = ?, administration_route = ? WHERE id = ?";
+        var escapedValues = [obj.prescription, obj.drug, obj.quantity, obj.dose, obj.administrationRoute, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {

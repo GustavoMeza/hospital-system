@@ -1,22 +1,22 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO users (username, first_name, last_name, password, shift) VALUES (?, ?, ?, ?, ?);";
-        var escapedValues = [obj.username, obj.firstName, obj.lastName, obj.password, obj.shift];
+        var sql = "INSERT INTO permissions (resource, action) VALUES (?, ?);";
+        var escapedValues = [obj.resource, obj.action];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
-        var sql = "SELECT * FROM users;";
+        var sql = "SELECT * FROM permissions;";
         var escapedValues = []
         return connector.execute(sql, escapedValues);
     },
     readById: (id) => {
-        var sql = "SELECT * FROM users WHERE id=?";
+        var sql = "SELECT * FROM permissions WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE SET username = ?, first_name = ?, last_name = ?, password = ?, shift = ? WHERE id = ?";
-        var escapedValues = [obj.username, obj.firstName, obj.lastName, obj.password, obj.shift, obj.id];
+        var sql = "UPDATE SET resource = ?, action = ? WHERE id = ?";
+        var escapedValues = [obj.resource, obj.action, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
