@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE SET username = ?, first_name = ?, last_name = ?, password = ?, shift = ? WHERE id = ?";
+        var sql = "UPDATE users SET username = ?, first_name = ?, last_name = ?, password = ?, shift = ? WHERE id = ?";
         var escapedValues = [obj.username, obj.firstName, obj.lastName, obj.password, obj.shift, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE SET is_deleted = 1 WHERE id = ?";
+        var sql = "UPDATE users SET is_deleted = 1 WHERE id = ?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },
