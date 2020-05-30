@@ -29,11 +29,10 @@ def parse_template(tables):
             parsed_tables.append(parsed_table)
         ans = '\n'.join(parsed_tables)
         return ans
-    parsed = re.sub('@table{(.*?)}', foreach_table, template)
+    parsed = re.sub('@table{([\s\S]*?)}', foreach_table, template)
     
     with open(output_path,'w') as f:
         f.write(parsed)
-    
 
 [enums, tables] = schema_interpreter.interpret()
 parse_template(tables)
