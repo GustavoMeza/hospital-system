@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO outputs (sign, batch, quantity, comment, type) VALUES (?, ?, ?, ?, ?);";
-        var escapedValues = [obj.sign, obj.batch, obj.quantity, obj.comment, obj.type];
+        var sql = "INSERT INTO outputs (sign, batch, quantity, comment, type, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        var escapedValues = [obj.sign, obj.batch, obj.quantity, obj.comment, obj.type, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE outputs SET sign = ?, batch = ?, quantity = ?, comment = ?, type = ? WHERE id = ?";
-        var escapedValues = [obj.sign, obj.batch, obj.quantity, obj.comment, obj.type, obj.id];
+        var sql = "UPDATE outputs SET sign = ?, batch = ?, quantity = ?, comment = ?, type = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
+        var escapedValues = [obj.sign, obj.batch, obj.quantity, obj.comment, obj.type, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE outputs SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM outputs WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

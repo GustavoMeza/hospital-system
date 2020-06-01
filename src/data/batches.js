@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO batches (code, input, drug, expires, quantity, lab) VALUES (?, ?, ?, ?, ?, ?);";
-        var escapedValues = [obj.code, obj.input, obj.drug, obj.expires, obj.quantity, obj.lab];
+        var sql = "INSERT INTO batches (internal_code, input, drug, expires_on, quantity, lab, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        var escapedValues = [obj.internalCode, obj.input, obj.drug, obj.expiresOn, obj.quantity, obj.lab, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE batches SET code = ?, input = ?, drug = ?, expires = ?, quantity = ?, lab = ? WHERE id = ?";
-        var escapedValues = [obj.code, obj.input, obj.drug, obj.expires, obj.quantity, obj.lab, obj.id];
+        var sql = "UPDATE batches SET internal_code = ?, input = ?, drug = ?, expires_on = ?, quantity = ?, lab = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
+        var escapedValues = [obj.internalCode, obj.input, obj.drug, obj.expiresOn, obj.quantity, obj.lab, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE batches SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM batches WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

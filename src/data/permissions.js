@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO permissions (resource, action) VALUES (?, ?);";
-        var escapedValues = [obj.resource, obj.action];
+        var sql = "INSERT INTO permissions (action, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?);";
+        var escapedValues = [obj.action, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE permissions SET resource = ?, action = ? WHERE id = ?";
-        var escapedValues = [obj.resource, obj.action, obj.id];
+        var sql = "UPDATE permissions SET action = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
+        var escapedValues = [obj.action, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE permissions SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM permissions WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

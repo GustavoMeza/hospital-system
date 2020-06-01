@@ -1,91 +1,153 @@
 CREATE TABLE `users` (
-  `username` varchar(255) PRIMARY KEY,
-  `first_name` varchar(255),
-  `last_name` varchar(255),
-  `password` varchar(255),
-  `shift` ENUM ('matutino', 'vespertino', 'nocturno', 'jornada_acumulada')
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `username` varchar(255) UNIQUE NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `salt` varchar(255) NOT NULL,
+  `hash` varchar(255) NOT NULL,
+  `shift` ENUM ('morning', 'afternoon', 'night', 'accumulate') NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `roles` (
-  `code` varchar(255) PRIMARY KEY
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255) UNIQUE NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `permissions` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `resource` ENUM ('user_roles', 'users', 'patientes', 'certificates', 'prescriptions', 'prescription_fills', 'prescription_returns', 'prescription_drugs', 'drugs', 'batches', 'inputs', 'outputs', 'purchase_details', 'transfer_details'),
-  `action` varchar(255)
+  `action` varchar(255) UNIQUE NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `role_permissions` (
-  `role` varchar(255),
-  `permission` int
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `role` int NOT NULL,
+  `permission` int NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `user_roles` (
-  `user` varchar(255),
-  `role` varchar(255)
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `user` int NOT NULL,
+  `role` int NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
-CREATE TABLE `certificates` (
-  `code` varchar(255) PRIMARY KEY,
-  `user` varchar(255),
-  `college` varchar(255),
-  `type` ENUM ('professional', 'specialty')
+CREATE TABLE `licenses` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `code` varchar(255) UNIQUE NOT NULL,
+  `user` int NOT NULL,
+  `college` varchar(255) NOT NULL,
+  `type` ENUM ('professional', 'specialty') NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
-CREATE TABLE `specialty_detail` (
-  `certificate` varchar(255),
-  `specialty` varchar(255)
+CREATE TABLE `specialties` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `license` int NOT NULL,
+  `field` varchar(255) NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `drugs` (
-  `code` varchar(255) PRIMARY KEY,
-  `name` varchar(255),
-  `presentation` varchar(255),
-  `units` int
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `internal_code` varchar(255) UNIQUE NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `presentation` varchar(255) NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `inputs` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `supplier` varchar(255),
-  `address` varchar(255),
+  `supplier` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `comments` varchar(255),
-  `type` ENUM ('purchase', 'transfer', 'other')
+  `type` ENUM ('purchase', 'transfer', 'other') NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `batches` (
-  `code` varchar(255) PRIMARY KEY,
-  `input` int,
-  `drug` varchar(255),
-  `expires` datetime,
-  `quantity` int,
-  `lab` varchar(255)
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `internal_code` varchar(255) UNIQUE NOT NULL,
+  `input` int NOT NULL,
+  `drug` int NOT NULL,
+  `expires_on` date NOT NULL,
+  `quantity` int NOT NULL,
+  `lab` varchar(255) NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
-CREATE TABLE `purchase_details` (
-  `input` int,
-  `invoice` varchar(255),
-  `sanitary_license` varchar(255)
+CREATE TABLE `purchases` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `input` int NOT NULL,
+  `invoice` varchar(255) NOT NULL,
+  `sanitary_license` varchar(255) NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
-CREATE TABLE `transfer_details` (
-  `input` int,
-  `document` varchar(255)
+CREATE TABLE `transfers` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `input` int NOT NULL,
+  `document` varchar(255) NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `outputs` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `sign` varchar(255),
-  `batch` varchar(255),
-  `quantity` int,
-  `comment` varchar(255),
-  `type` ENUM ('expiration', 'prescription_fill', 'other')
+  `sign` int,
+  `batch` int NOT NULL,
+  `quantity` int NOT NULL,
+  `comment` varchar(255) NOT NULL,
+  `type` ENUM ('expiration', 'prescription_fill', 'other') NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `patients` (
-  `file` varchar(255) PRIMARY KEY,
-  `first_name` varchar(255),
-  `last_name` varchar(255),
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `file` varchar(255) UNIQUE NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `curp` varchar(255),
   `birthdate` date,
   `sex` ENUM ('male', 'female', 'other'),
@@ -93,73 +155,187 @@ CREATE TABLE `patients` (
   `floor` varchar(255),
   `bed` varchar(255),
   `diagnostic` varchar(255),
-  `arrival_time` datetime,
-  `departure_time` datetime
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `prescriptions` (
-  `code` int PRIMARY KEY AUTO_INCREMENT,
-  `patient` varchar(255),
-  `doctor` varchar(255),
-  `issue_date` datetime,
-  `comments` varchar(255)
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `internal_code` int UNIQUE NOT NULL,
+  `patient` int NOT NULL,
+  `doctor` int NOT NULL,
+  `comments` varchar(255),
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `prescription_drugs` (
-  `prescription` int,
-  `drug` varchar(255),
-  `quantity` int,
-  `dose` varchar(255),
-  `administration_route` varchar(255)
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `prescription` int NOT NULL,
+  `drug` int NOT NULL,
+  `quantity` int NOT NULL,
+  `days` int NOT NULL,
+  `dose` varchar(255) NOT NULL,
+  `frequency` varchar(255) NOT NULL,
+  `administration_route` varchar(255) NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `prescription_fills` (
-  `prescription` int,
-  `output` int
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `prescription` int NOT NULL,
+  `receiver_type` ENUM ('patient', 'emissary', 'crew', 'other') NOT NULL,
+  `receiver_name` varchar(255) NOT NULL,
+  `receiver_id_type` ENUM ('ine', 'passport') NOT NULL,
+  `receiver_id_number` varchar(255) NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
+);
+
+CREATE TABLE `fill_batches` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `prescription_fill` int NOT NULL,
+  `outputs` int NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
 CREATE TABLE `prescription_returns` (
-  `prescription` int,
-  `batch` varchar(255),
-  `quantity` int
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `prescription` int NOT NULL,
+  `batch` int NOT NULL,
+  `quantity` int NOT NULL,
+  `status` ENUM ('active', 'history') NOT NULL,
+  `original_id` int,
+  `created_at` datetime NOT NULL,
+  `created_by` int
 );
 
-ALTER TABLE `role_permissions` ADD FOREIGN KEY (`role`) REFERENCES `roles` (`code`);
+ALTER TABLE `users` ADD FOREIGN KEY (`original_id`) REFERENCES `users` (`id`);
+
+ALTER TABLE `users` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `roles` ADD FOREIGN KEY (`original_id`) REFERENCES `roles` (`id`);
+
+ALTER TABLE `roles` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `permissions` ADD FOREIGN KEY (`original_id`) REFERENCES `permissions` (`id`);
+
+ALTER TABLE `permissions` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `role_permissions` ADD FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
 
 ALTER TABLE `role_permissions` ADD FOREIGN KEY (`permission`) REFERENCES `permissions` (`id`);
 
-ALTER TABLE `user_roles` ADD FOREIGN KEY (`user`) REFERENCES `users` (`username`);
+ALTER TABLE `role_permissions` ADD FOREIGN KEY (`original_id`) REFERENCES `role_permissions` (`id`);
 
-ALTER TABLE `user_roles` ADD FOREIGN KEY (`role`) REFERENCES `roles` (`code`);
+ALTER TABLE `role_permissions` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
-ALTER TABLE `certificates` ADD FOREIGN KEY (`user`) REFERENCES `users` (`username`);
+ALTER TABLE `user_roles` ADD FOREIGN KEY (`user`) REFERENCES `users` (`id`);
 
-ALTER TABLE `specialty_detail` ADD FOREIGN KEY (`certificate`) REFERENCES `certificates` (`code`);
+ALTER TABLE `user_roles` ADD FOREIGN KEY (`role`) REFERENCES `roles` (`id`);
+
+ALTER TABLE `user_roles` ADD FOREIGN KEY (`original_id`) REFERENCES `user_roles` (`id`);
+
+ALTER TABLE `user_roles` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `licenses` ADD FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+
+ALTER TABLE `licenses` ADD FOREIGN KEY (`original_id`) REFERENCES `licenses` (`id`);
+
+ALTER TABLE `licenses` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `specialties` ADD FOREIGN KEY (`license`) REFERENCES `licenses` (`id`);
+
+ALTER TABLE `specialties` ADD FOREIGN KEY (`original_id`) REFERENCES `specialties` (`id`);
+
+ALTER TABLE `specialties` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `drugs` ADD FOREIGN KEY (`original_id`) REFERENCES `drugs` (`id`);
+
+ALTER TABLE `drugs` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `inputs` ADD FOREIGN KEY (`original_id`) REFERENCES `inputs` (`id`);
+
+ALTER TABLE `inputs` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
 ALTER TABLE `batches` ADD FOREIGN KEY (`input`) REFERENCES `inputs` (`id`);
 
-ALTER TABLE `batches` ADD FOREIGN KEY (`drug`) REFERENCES `drugs` (`code`);
+ALTER TABLE `batches` ADD FOREIGN KEY (`drug`) REFERENCES `drugs` (`id`);
 
-ALTER TABLE `purchase_details` ADD FOREIGN KEY (`input`) REFERENCES `inputs` (`id`);
+ALTER TABLE `batches` ADD FOREIGN KEY (`original_id`) REFERENCES `batches` (`id`);
 
-ALTER TABLE `transfer_details` ADD FOREIGN KEY (`input`) REFERENCES `inputs` (`id`);
+ALTER TABLE `batches` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
-ALTER TABLE `outputs` ADD FOREIGN KEY (`sign`) REFERENCES `users` (`username`);
+ALTER TABLE `purchases` ADD FOREIGN KEY (`input`) REFERENCES `inputs` (`id`);
 
-ALTER TABLE `outputs` ADD FOREIGN KEY (`batch`) REFERENCES `batches` (`code`);
+ALTER TABLE `purchases` ADD FOREIGN KEY (`original_id`) REFERENCES `purchases` (`id`);
 
-ALTER TABLE `prescriptions` ADD FOREIGN KEY (`patient`) REFERENCES `patients` (`file`);
+ALTER TABLE `purchases` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
-ALTER TABLE `prescriptions` ADD FOREIGN KEY (`doctor`) REFERENCES `certificates` (`code`);
+ALTER TABLE `transfers` ADD FOREIGN KEY (`input`) REFERENCES `inputs` (`id`);
 
-ALTER TABLE `prescription_drugs` ADD FOREIGN KEY (`prescription`) REFERENCES `prescriptions` (`code`);
+ALTER TABLE `transfers` ADD FOREIGN KEY (`original_id`) REFERENCES `transfers` (`id`);
 
-ALTER TABLE `prescription_drugs` ADD FOREIGN KEY (`drug`) REFERENCES `drugs` (`code`);
+ALTER TABLE `transfers` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
-ALTER TABLE `prescription_fills` ADD FOREIGN KEY (`prescription`) REFERENCES `prescriptions` (`code`);
+ALTER TABLE `outputs` ADD FOREIGN KEY (`sign`) REFERENCES `users` (`id`);
 
-ALTER TABLE `prescription_fills` ADD FOREIGN KEY (`output`) REFERENCES `outputs` (`id`);
+ALTER TABLE `outputs` ADD FOREIGN KEY (`batch`) REFERENCES `batches` (`id`);
 
-ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`prescription`) REFERENCES `prescriptions` (`code`);
+ALTER TABLE `outputs` ADD FOREIGN KEY (`original_id`) REFERENCES `outputs` (`id`);
 
-ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`batch`) REFERENCES `batches` (`code`);
+ALTER TABLE `outputs` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `patients` ADD FOREIGN KEY (`original_id`) REFERENCES `patients` (`id`);
+
+ALTER TABLE `patients` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `prescriptions` ADD FOREIGN KEY (`patient`) REFERENCES `patients` (`id`);
+
+ALTER TABLE `prescriptions` ADD FOREIGN KEY (`doctor`) REFERENCES `users` (`id`);
+
+ALTER TABLE `prescriptions` ADD FOREIGN KEY (`original_id`) REFERENCES `prescriptions` (`id`);
+
+ALTER TABLE `prescriptions` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `prescription_drugs` ADD FOREIGN KEY (`prescription`) REFERENCES `prescriptions` (`id`);
+
+ALTER TABLE `prescription_drugs` ADD FOREIGN KEY (`drug`) REFERENCES `drugs` (`id`);
+
+ALTER TABLE `prescription_drugs` ADD FOREIGN KEY (`original_id`) REFERENCES `prescription_drugs` (`id`);
+
+ALTER TABLE `prescription_drugs` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `prescription_fills` ADD FOREIGN KEY (`prescription`) REFERENCES `prescriptions` (`id`);
+
+ALTER TABLE `prescription_fills` ADD FOREIGN KEY (`original_id`) REFERENCES `prescription_fills` (`id`);
+
+ALTER TABLE `prescription_fills` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `fill_batches` ADD FOREIGN KEY (`prescription_fill`) REFERENCES `prescription_fills` (`id`);
+
+ALTER TABLE `fill_batches` ADD FOREIGN KEY (`outputs`) REFERENCES `outputs` (`id`);
+
+ALTER TABLE `fill_batches` ADD FOREIGN KEY (`original_id`) REFERENCES `fill_batches` (`id`);
+
+ALTER TABLE `fill_batches` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+
+ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`prescription`) REFERENCES `prescriptions` (`id`);
+
+ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`batch`) REFERENCES `batches` (`id`);
+
+ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`original_id`) REFERENCES `prescription_returns` (`id`);
+
+ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);

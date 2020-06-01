@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO prescriptions (code, patient, doctor, issue_date, comments) VALUES (?, ?, ?, ?, ?);";
-        var escapedValues = [obj.code, obj.patient, obj.doctor, obj.issueDate, obj.comments];
+        var sql = "INSERT INTO prescriptions (internal_code, patient, doctor, comments, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        var escapedValues = [obj.internalCode, obj.patient, obj.doctor, obj.comments, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE prescriptions SET code = ?, patient = ?, doctor = ?, issue_date = ?, comments = ? WHERE id = ?";
-        var escapedValues = [obj.code, obj.patient, obj.doctor, obj.issueDate, obj.comments, obj.id];
+        var sql = "UPDATE prescriptions SET internal_code = ?, patient = ?, doctor = ?, comments = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
+        var escapedValues = [obj.internalCode, obj.patient, obj.doctor, obj.comments, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE prescriptions SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM prescriptions WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

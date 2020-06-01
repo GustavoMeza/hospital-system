@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO patients (file, first_name, last_name, curp, birthdate, sex, address, floor, bed, diagnostic, arrival_time, departure_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        var escapedValues = [obj.file, obj.firstName, obj.lastName, obj.curp, obj.birthdate, obj.sex, obj.address, obj.floor, obj.bed, obj.diagnostic, obj.arrivalTime, obj.departureTime];
+        var sql = "INSERT INTO patients (file, first_name, last_name, curp, birthdate, sex, address, floor, bed, diagnostic, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        var escapedValues = [obj.file, obj.firstName, obj.lastName, obj.curp, obj.birthdate, obj.sex, obj.address, obj.floor, obj.bed, obj.diagnostic, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE patients SET file = ?, first_name = ?, last_name = ?, curp = ?, birthdate = ?, sex = ?, address = ?, floor = ?, bed = ?, diagnostic = ?, arrival_time = ?, departure_time = ? WHERE id = ?";
-        var escapedValues = [obj.file, obj.firstName, obj.lastName, obj.curp, obj.birthdate, obj.sex, obj.address, obj.floor, obj.bed, obj.diagnostic, obj.arrivalTime, obj.departureTime, obj.id];
+        var sql = "UPDATE patients SET file = ?, first_name = ?, last_name = ?, curp = ?, birthdate = ?, sex = ?, address = ?, floor = ?, bed = ?, diagnostic = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
+        var escapedValues = [obj.file, obj.firstName, obj.lastName, obj.curp, obj.birthdate, obj.sex, obj.address, obj.floor, obj.bed, obj.diagnostic, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE patients SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM patients WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

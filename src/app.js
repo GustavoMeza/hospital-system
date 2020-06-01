@@ -1,6 +1,8 @@
+require('dotenv').config();
 var connector = require('./connector')();
-var dataServices = require('./data/services')(connector);
-var apiServices = require('./api/services')(dataServices);
+var dataServices = require('./data')(connector);
+var persistentServices = require('./persistent')();
+var apiServices = require('./api/')(dataServices, persistentServices);
 var router = require('./router')(apiServices);
 var express = require('express');
 

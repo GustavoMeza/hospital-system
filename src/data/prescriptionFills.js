@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO prescription_fills (prescription, output) VALUES (?, ?);";
-        var escapedValues = [obj.prescription, obj.output];
+        var sql = "INSERT INTO prescription_fills (prescription, receiver_type, receiver_name, receiver_id_type, receiver_id_number, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        var escapedValues = [obj.prescription, obj.receiverType, obj.receiverName, obj.receiverIdType, obj.receiverIdNumber, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE prescription_fills SET prescription = ?, output = ? WHERE id = ?";
-        var escapedValues = [obj.prescription, obj.output, obj.id];
+        var sql = "UPDATE prescription_fills SET prescription = ?, receiver_type = ?, receiver_name = ?, receiver_id_type = ?, receiver_id_number = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
+        var escapedValues = [obj.prescription, obj.receiverType, obj.receiverName, obj.receiverIdType, obj.receiverIdNumber, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE prescription_fills SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM prescription_fills WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

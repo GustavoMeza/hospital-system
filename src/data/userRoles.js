@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO user_roles (user, role) VALUES (?, ?);";
-        var escapedValues = [obj.user, obj.role];
+        var sql = "INSERT INTO user_roles (user, role, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?);";
+        var escapedValues = [obj.user, obj.role, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -15,12 +15,12 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE user_roles SET user = ?, role = ? WHERE id = ?";
-        var escapedValues = [obj.user, obj.role, obj.id];
+        var sql = "UPDATE user_roles SET user = ?, role = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
+        var escapedValues = [obj.user, obj.role, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE user_roles SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM user_roles WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

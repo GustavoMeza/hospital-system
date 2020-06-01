@@ -20,7 +20,7 @@ module.exports = (connector) => ({
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE $table SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM $table WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },
