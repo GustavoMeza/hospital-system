@@ -1,0 +1,271 @@
+Enum status {
+    active
+    history
+}
+
+Enum shifts {
+    morning
+    afternoon
+    night
+    accumulate
+}
+
+Enum license_type {
+    professional
+    specialty
+}
+
+Enum input_type {
+    purchase
+    transfer
+    other
+}
+
+Enum output_type {
+    expiration
+    prescription_fill
+    other
+}
+
+Enum sex {
+    male
+    female
+    other
+}
+
+Enum receiver_type {
+    patient
+    emissary
+    crew
+    other
+}
+
+Enum receiver_id_type {
+    ine 
+    passport
+}
+
+Table users {
+    id int [pk, increment]
+    username varchar [not null, unique]
+    first_name varchar [not null]
+    last_name varchar [not null]
+    salt varchar [not null]
+    hash varchar [not null]
+    shift shifts [not null]
+    status status [not null]
+    original_id int [ref: > users.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table roles {
+    id int [pk, increment]
+    name varchar [not null, unique]
+    status status [not null]
+    original_id int [ref: > roles.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table permissions {
+    id int [pk, increment]
+    action varchar [not null, unique]
+    status status [not null]
+    original_id int [ref: > permissions.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table role_permissions {
+    id int [pk, increment]
+    role int [not null, ref: > roles.id]
+    permission int [not null, ref: > permissions.id]
+    status status [not null]
+    original_id int [ref: > role_permissions.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table user_roles {
+    id int [pk, increment]
+    user int [not null, ref: > users.id]
+    role int [not null, ref: > roles.id]
+    status status [not null]
+    original_id int [ref: > user_roles.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table licenses {
+    id int [pk, increment]
+    code varchar [not null, unique]
+    user int [not null, ref: > users.id]
+    college varchar [not null]
+    type license_type [not null]
+    status status [not null]
+    original_id int [ref: > licenses.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table specialties {
+    id int [pk, increment]
+    license int [not null, ref: > licenses.id]
+    field varchar [not null]
+    status status [not null]
+    original_id int [ref: > specialties.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table drugs {
+    id int [pk, increment]
+    internal_code varchar [not null, unique]
+    name varchar [not null]
+    presentation varchar [not null]
+    status status [not null]
+    original_id int [ref: > drugs.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table inputs {
+    id int [pk, increment]
+    supplier varchar [not null]
+    address varchar [not null] 
+    comments varchar
+    type input_type [not null]
+    status status [not null]
+    original_id int [ref: > inputs.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table batches {
+    id int [pk, increment]
+    internal_code varchar [not null, unique]
+    input int [not null, ref: > inputs.id]
+    drug int [not null, ref: > drugs.id]
+    expires_on date [not null]
+    quantity int [not null]
+    lab varchar [not null]
+    status status [not null]
+    original_id int [ref: > batches.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table purchases {
+    id int [pk, increment]
+    input int [not null, ref: > inputs.id]
+    invoice varchar [not null]
+    sanitary_license varchar [not null]
+    status status [not null]
+    original_id int [ref: > purchases.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table transfers {
+    id int [pk, increment]
+    input int [not null,ref: > inputs.id]
+    document varchar [not null]
+    status status [not null]
+    original_id int [ref: > transfers.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table outputs {
+    id int [pk,increment]
+    sign int [ref: > users.id]
+    batch int [not null, ref: > batches.id]
+    quantity int [not null]
+    comment varchar [not null]
+    type output_type [not null]
+    status status [not null]
+    original_id int [ref: > outputs.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table patients {
+    id int [pk, increment]
+    file varchar [not null, unique]
+    first_name varchar [not null]
+    last_name varchar [not null]
+    curp varchar
+    birthdate date
+    sex sex
+    address varchar
+    floor varchar
+    bed varchar
+    diagnostic varchar
+    status status [not null]
+    original_id int [ref: > patients.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table prescriptions {
+    id int [pk, increment]
+    internal_code int [not null, unique]
+    patient int [not null, ref: > patients.id]
+    doctor int [not null, ref: > users.id]
+    comments varchar
+    status status [not null]
+    original_id int [ref: > prescriptions.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table prescription_drugs {
+    id int [pk, increment]
+    prescription int [not null, ref: > prescriptions.id]
+    drug int [not null, ref: > drugs.id]
+    quantity int [not null]
+    days int [not null]
+    dose varchar [not null]
+    frequency varchar [not null]
+    administration_route varchar [not null]
+    status status [not null]
+    original_id int [ref: > prescription_drugs.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table prescription_fills {
+    id int [pk, increment]
+    prescription int [not null, ref: > prescriptions.id]
+    receiver_type receiver_type [not null]
+    receiver_name varchar [not null]
+    receiver_id_type receiver_id_type [not null]
+    receiver_id_number varchar [not null]
+    status status [not null]
+    original_id int [ref: > prescription_fills.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table fill_batches {
+    id int [pk, increment]
+    prescription_fill int [not null, ref: > prescription_fills.id]
+    outputs int [not null, ref: > outputs.id]
+    status status [not null]
+    original_id int [ref: > fill_batches.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
+Table prescription_returns {
+    id int [pk, increment]
+    prescription int [not null, ref: > prescriptions.id]
+    batch int [not null, ref: > batches.id]
+    quantity int [not null]
+    status status [not null]
+    original_id int [ref: > prescription_returns.id]
+    created_at datetime [not null]
+    created_by int [ref: > users.id]
+}
+
