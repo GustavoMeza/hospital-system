@@ -1,19 +1,17 @@
 var mysql = require('mysql2/promise')
 
-var dbconfig = {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB_NAME,
+module.exports = (config) => {
+
+    var poolConfig = {
+        host: config.DB_HOST,
+        user: config.DB_USER,
+        password: config.DB_PASS,
+        database: config.DB_NAME,
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0,
+    }
+
+    connectionPool = mysql.createPool(poolConfig);
+    return connectionPool;
 }
-
-var poolConfig = {
-    ...dbconfig,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-}
-
-connectionPool = mysql.createPool(poolConfig);
-
-module.exports = () => connectionPool;

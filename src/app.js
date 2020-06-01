@@ -1,29 +1,24 @@
-require('dotenv').config();
-var connector = require('./connector')();
+var config = require('./config')();
+var connector = require('./connector')(config);
 var dataServices = require('./data')(connector);
 var persistentServices = require('./persistent')();
 var businessServices = require('./business')(dataServices, persistentServices);
-var authenticationServices = require('./authentication')(businessServices);
-
-(async () => {
-    var isGood = await authenticationServices.validate('okra', '1234');
-    console.log(isGood);
-})();
-
-
-/*
-var apiServices = require('./api/')(dataServices, persistentServices);
-var router = require('./router')(apiServices);
+var authServices = require('./auth')(businessServices, config);
+var authMiddlewear = require('./auth/middlewear')(authServices);
+var apis = require('./apis/')(businessServices);
 var express = require('express');
 
 var app = express();
 
-app.use(express.urlencoded());
 app.use(express.json());
-app.use('/', router);
+
+for(var apiId in apis) {
+    var api = apis[apiId];
+    if(api.auth==null) app[api.method](api.route, api.controller);
+    else app[api.method](api.route, authMiddlewear, api.auth, api.controller);
+}
 
 var port = 3000;
 app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`);
+    console.log(`Listening at http://localhost:${port}`);
 });
-*/
