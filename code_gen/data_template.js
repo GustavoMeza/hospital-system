@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO $table (@col{$name}) VALUES (@col{?});";
-        var escapedValues = [@col{obj.^name}];
+        var escapedValues = [@col{obj.$name}];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -16,7 +16,7 @@ module.exports = (connector) => ({
     },
     update: (obj) => {
         var sql = "UPDATE $table SET @col{$name = ?} WHERE id = ?";
-        var escapedValues = [@col{obj.^name}, obj.id];
+        var escapedValues = [@col{obj.$name}, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {

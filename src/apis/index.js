@@ -1,3 +1,21 @@
-module.exports = (businessService) => ({
-    seeAllUsers: require('./seeAllUsers')(businessService),
+module.exports = (persistentServices, dataServices) => ({
+    users : require('./users')(persistentServices, dataServices.users),
+    roles : require('./roles')(persistentServices, dataServices.roles),
+    permissions : require('./permissions')(persistentServices, dataServices.permissions),
+    rolePermissions : require('./rolePermissions')(persistentServices, dataServices.rolePermissions),
+    userRoles : require('./userRoles')(persistentServices, dataServices.userRoles),
+    licenses : require('./licenses')(persistentServices, dataServices.licenses),
+    specialties : require('./specialties')(persistentServices, dataServices.specialties),
+    drugs : require('./drugs')(persistentServices, dataServices.drugs),
+    inputs : require('./inputs')(persistentServices, dataServices.inputs),
+    batches : require('./batches')(persistentServices, dataServices.batches),
+    purchases : require('./purchases')(persistentServices, dataServices.purchases),
+    transfers : require('./transfers')(persistentServices, dataServices.transfers),
+    outputs : require('./outputs')(persistentServices, dataServices.outputs),
+    patients : require('./patients')(persistentServices, dataServices.patients),
+    prescriptions : require('./prescriptions')(persistentServices, dataServices.prescriptions),
+    prescriptionDrugs : require('./prescriptionDrugs')(persistentServices, dataServices.prescriptionDrugs),
+    prescriptionFills : require('./prescriptionFills')(persistentServices, dataServices.prescriptionFills),
+    fillBatches : require('./fillBatches')(persistentServices, dataServices.fillBatches),
+    prescriptionReturns : require('./prescriptionReturns')(persistentServices, dataServices.prescriptionReturns),
 });

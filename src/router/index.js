@@ -38,19 +38,19 @@ module.exports = (apiServices) => {
     router.put('/api/userRoles/', apiServices.userRoles.update);
     router.delete('/api/userRoles/:id', apiServices.userRoles.delete);
 
-    // certificates
-    router.post('/api/certificates/', apiServices.certificates.create);
-    router.get('/api/certificates/', apiServices.certificates.readAll);
-    router.get('/api/certificates/:id', apiServices.certificates.readById);
-    router.put('/api/certificates/', apiServices.certificates.update);
-    router.delete('/api/certificates/:id', apiServices.certificates.delete);
+    // licenses
+    router.post('/api/licenses/', apiServices.licenses.create);
+    router.get('/api/licenses/', apiServices.licenses.readAll);
+    router.get('/api/licenses/:id', apiServices.licenses.readById);
+    router.put('/api/licenses/', apiServices.licenses.update);
+    router.delete('/api/licenses/:id', apiServices.licenses.delete);
 
-    // specialtyDetail
-    router.post('/api/specialtyDetail/', apiServices.specialtyDetail.create);
-    router.get('/api/specialtyDetail/', apiServices.specialtyDetail.readAll);
-    router.get('/api/specialtyDetail/:id', apiServices.specialtyDetail.readById);
-    router.put('/api/specialtyDetail/', apiServices.specialtyDetail.update);
-    router.delete('/api/specialtyDetail/:id', apiServices.specialtyDetail.delete);
+    // specialties
+    router.post('/api/specialties/', apiServices.specialties.create);
+    router.get('/api/specialties/', apiServices.specialties.readAll);
+    router.get('/api/specialties/:id', apiServices.specialties.readById);
+    router.put('/api/specialties/', apiServices.specialties.update);
+    router.delete('/api/specialties/:id', apiServices.specialties.delete);
 
     // drugs
     router.post('/api/drugs/', apiServices.drugs.create);
@@ -73,19 +73,19 @@ module.exports = (apiServices) => {
     router.put('/api/batches/', apiServices.batches.update);
     router.delete('/api/batches/:id', apiServices.batches.delete);
 
-    // purchaseDetails
-    router.post('/api/purchaseDetails/', apiServices.purchaseDetails.create);
-    router.get('/api/purchaseDetails/', apiServices.purchaseDetails.readAll);
-    router.get('/api/purchaseDetails/:id', apiServices.purchaseDetails.readById);
-    router.put('/api/purchaseDetails/', apiServices.purchaseDetails.update);
-    router.delete('/api/purchaseDetails/:id', apiServices.purchaseDetails.delete);
+    // purchases
+    router.post('/api/purchases/', apiServices.purchases.create);
+    router.get('/api/purchases/', apiServices.purchases.readAll);
+    router.get('/api/purchases/:id', apiServices.purchases.readById);
+    router.put('/api/purchases/', apiServices.purchases.update);
+    router.delete('/api/purchases/:id', apiServices.purchases.delete);
 
-    // transferDetails
-    router.post('/api/transferDetails/', apiServices.transferDetails.create);
-    router.get('/api/transferDetails/', apiServices.transferDetails.readAll);
-    router.get('/api/transferDetails/:id', apiServices.transferDetails.readById);
-    router.put('/api/transferDetails/', apiServices.transferDetails.update);
-    router.delete('/api/transferDetails/:id', apiServices.transferDetails.delete);
+    // transfers
+    router.post('/api/transfers/', apiServices.transfers.create);
+    router.get('/api/transfers/', apiServices.transfers.readAll);
+    router.get('/api/transfers/:id', apiServices.transfers.readById);
+    router.put('/api/transfers/', apiServices.transfers.update);
+    router.delete('/api/transfers/:id', apiServices.transfers.delete);
 
     // outputs
     router.post('/api/outputs/', apiServices.outputs.create);
@@ -121,6 +121,13 @@ module.exports = (apiServices) => {
     router.get('/api/prescriptionFills/:id', apiServices.prescriptionFills.readById);
     router.put('/api/prescriptionFills/', apiServices.prescriptionFills.update);
     router.delete('/api/prescriptionFills/:id', apiServices.prescriptionFills.delete);
+
+    // fillBatches
+    router.post('/api/fillBatches/', apiServices.fillBatches.create);
+    router.get('/api/fillBatches/', apiServices.fillBatches.readAll);
+    router.get('/api/fillBatches/:id', apiServices.fillBatches.readById);
+    router.put('/api/fillBatches/', apiServices.fillBatches.update);
+    router.delete('/api/fillBatches/:id', apiServices.fillBatches.delete);
 
     // prescriptionReturns
     router.post('/api/prescriptionReturns/', apiServices.prescriptionReturns.create);

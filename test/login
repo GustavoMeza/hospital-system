@@ -1,0 +1,1 @@
+curl -d @cred.json -H 'Content-Type: Application/json' -X POST http://localhost:3000/login

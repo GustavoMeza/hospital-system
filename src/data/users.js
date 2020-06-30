@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO users (username, first_name, last_name, salt, hash, shift, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-        var escapedValues = [obj.username, obj.firstName, obj.lastName, obj.salt, obj.hash, obj.shift, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
+        var escapedValues = [obj.username, obj.first_name, obj.last_name, obj.salt, obj.hash, obj.shift, obj.status, obj.original_id, obj.created_at, obj.created_by];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -16,7 +16,7 @@ module.exports = (connector) => ({
     },
     update: (obj) => {
         var sql = "UPDATE users SET username = ?, first_name = ?, last_name = ?, salt = ?, hash = ?, shift = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
-        var escapedValues = [obj.username, obj.firstName, obj.lastName, obj.salt, obj.hash, obj.shift, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
+        var escapedValues = [obj.username, obj.first_name, obj.last_name, obj.salt, obj.hash, obj.shift, obj.status, obj.original_id, obj.created_at, obj.created_by, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {

@@ -1,7 +1,7 @@
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO inputs (supplier, address, comments, type, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-        var escapedValues = [obj.supplier, obj.address, obj.comments, obj.type, obj.status, obj.originalId, obj.createdAt, obj.createdBy];
+        var escapedValues = [obj.supplier, obj.address, obj.comments, obj.type, obj.status, obj.original_id, obj.created_at, obj.created_by];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
@@ -16,7 +16,7 @@ module.exports = (connector) => ({
     },
     update: (obj) => {
         var sql = "UPDATE inputs SET supplier = ?, address = ?, comments = ?, type = ?, status = ?, original_id = ?, created_at = ?, created_by = ? WHERE id = ?";
-        var escapedValues = [obj.supplier, obj.address, obj.comments, obj.type, obj.status, obj.originalId, obj.createdAt, obj.createdBy, obj.id];
+        var escapedValues = [obj.supplier, obj.address, obj.comments, obj.type, obj.status, obj.original_id, obj.created_at, obj.created_by, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {

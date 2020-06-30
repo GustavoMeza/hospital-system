@@ -47,7 +47,7 @@ Enum receiver_id_type {
 
 Table users {
     id int [pk, increment]
-    username varchar [not null, unique]
+    username varchar [not null]
     first_name varchar [not null]
     last_name varchar [not null]
     salt varchar [not null]
@@ -61,7 +61,7 @@ Table users {
 
 Table roles {
     id int [pk, increment]
-    name varchar [not null, unique]
+    name varchar [not null]
     status status [not null]
     original_id int [ref: > roles.id]
     created_at datetime [not null]
@@ -70,7 +70,7 @@ Table roles {
 
 Table permissions {
     id int [pk, increment]
-    action varchar [not null, unique]
+    action varchar [not null]
     status status [not null]
     original_id int [ref: > permissions.id]
     created_at datetime [not null]
@@ -99,7 +99,7 @@ Table user_roles {
 
 Table licenses {
     id int [pk, increment]
-    code varchar [not null, unique]
+    code varchar [not null]
     user int [not null, ref: > users.id]
     college varchar [not null]
     type license_type [not null]
@@ -121,7 +121,7 @@ Table specialties {
 
 Table drugs {
     id int [pk, increment]
-    internal_code varchar [not null, unique]
+    internal_code varchar [not null]
     name varchar [not null]
     presentation varchar [not null]
     status status [not null]
@@ -144,7 +144,7 @@ Table inputs {
 
 Table batches {
     id int [pk, increment]
-    internal_code varchar [not null, unique]
+    internal_code varchar [not null]
     input int [not null, ref: > inputs.id]
     drug int [not null, ref: > drugs.id]
     expires_on date [not null]
@@ -192,7 +192,7 @@ Table outputs {
 
 Table patients {
     id int [pk, increment]
-    file varchar [not null, unique]
+    file varchar [not null]
     first_name varchar [not null]
     last_name varchar [not null]
     curp varchar
@@ -210,7 +210,7 @@ Table patients {
 
 Table prescriptions {
     id int [pk, increment]
-    internal_code int [not null, unique]
+    internal_code int [not null]
     patient int [not null, ref: > patients.id]
     doctor int [not null, ref: > users.id]
     comments varchar

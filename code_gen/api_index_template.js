@@ -1,3 +1,3 @@
-module.exports = (dataServices) => ({
-@table{    ^name : require('./^name')(dataServices),}
+module.exports = (persistentServices, dataServices) => ({
+@table{    ^name : require('./^name')(persistentServices, dataServices.^name),}
 });

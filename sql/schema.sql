@@ -1,6 +1,6 @@
 CREATE TABLE `users` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `username` varchar(255) UNIQUE NOT NULL,
+  `username` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `salt` varchar(255) NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `roles` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255) UNIQUE NOT NULL,
+  `name` varchar(255) NOT NULL,
   `status` ENUM ('active', 'history') NOT NULL,
   `original_id` int,
   `created_at` datetime NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE `roles` (
 
 CREATE TABLE `permissions` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `action` varchar(255) UNIQUE NOT NULL,
+  `action` varchar(255) NOT NULL,
   `status` ENUM ('active', 'history') NOT NULL,
   `original_id` int,
   `created_at` datetime NOT NULL,
@@ -52,7 +52,7 @@ CREATE TABLE `user_roles` (
 
 CREATE TABLE `licenses` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `code` varchar(255) UNIQUE NOT NULL,
+  `code` varchar(255) NOT NULL,
   `user` int NOT NULL,
   `college` varchar(255) NOT NULL,
   `type` ENUM ('professional', 'specialty') NOT NULL,
@@ -74,7 +74,7 @@ CREATE TABLE `specialties` (
 
 CREATE TABLE `drugs` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `internal_code` varchar(255) UNIQUE NOT NULL,
+  `internal_code` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
   `presentation` varchar(255) NOT NULL,
   `status` ENUM ('active', 'history') NOT NULL,
@@ -97,7 +97,7 @@ CREATE TABLE `inputs` (
 
 CREATE TABLE `batches` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `internal_code` varchar(255) UNIQUE NOT NULL,
+  `internal_code` varchar(255) NOT NULL,
   `input` int NOT NULL,
   `drug` int NOT NULL,
   `expires_on` date NOT NULL,
@@ -145,7 +145,7 @@ CREATE TABLE `outputs` (
 
 CREATE TABLE `patients` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `file` varchar(255) UNIQUE NOT NULL,
+  `file` varchar(255) NOT NULL,
   `first_name` varchar(255) NOT NULL,
   `last_name` varchar(255) NOT NULL,
   `curp` varchar(255),
@@ -163,7 +163,7 @@ CREATE TABLE `patients` (
 
 CREATE TABLE `prescriptions` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `internal_code` int UNIQUE NOT NULL,
+  `internal_code` int NOT NULL,
   `patient` int NOT NULL,
   `doctor` int NOT NULL,
   `comments` varchar(255),
@@ -339,3 +339,4 @@ ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`batch`) REFERENCES `batches
 ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`original_id`) REFERENCES `prescription_returns` (`id`);
 
 ALTER TABLE `prescription_returns` ADD FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
+

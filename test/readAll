@@ -1,0 +1,1 @@
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJwZXJtaXNzaW9ucyI6W10sImlhdCI6MTU5MzQ3NzY0NiwiZXhwIjoxNTkzNDc4NTQ2fQ.NoGbYAwDCwp6-clIflzUqxQiKK2MaaRB4jvcpCy4Qko' -X GET http://localhost:3000/api/permissions
