@@ -1,3 +1,6 @@
+// Returns a module to perform CRUD operations on prescription_returns
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO prescription_returns (prescription, batch, quantity, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?);";

@@ -1,3 +1,6 @@
+// Returns a module to perform CRUD operations on drugs
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO drugs (internal_code, name, presentation, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?);";

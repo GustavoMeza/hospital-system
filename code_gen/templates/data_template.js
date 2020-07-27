@@ -1,26 +1,29 @@
+// Returns a module to perform CRUD operations on $table
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
-        var sql = "INSERT INTO transfer_details (input, document) VALUES (?, ?);";
-        var escapedValues = [obj.input, obj.document];
+        var sql = "INSERT INTO $table (@col{$name}) VALUES (@col{?});";
+        var escapedValues = [@col{obj.$name}];
         return connector.execute(sql, escapedValues);
     },
     readAll: () => {
-        var sql = "SELECT * FROM transfer_details;";
+        var sql = "SELECT * FROM $table;";
         var escapedValues = []
         return connector.execute(sql, escapedValues);
     },
     readById: (id) => {
-        var sql = "SELECT * FROM transfer_details WHERE id=?";
+        var sql = "SELECT * FROM $table WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },
     update: (obj) => {
-        var sql = "UPDATE transfer_details SET input = ?, document = ? WHERE id = ?";
-        var escapedValues = [obj.input, obj.document, obj.id];
+        var sql = "UPDATE $table SET @col{$name = ?} WHERE id = ?";
+        var escapedValues = [@col{obj.$name}, obj.id];
         return connector.execute(sql, escapedValues);
     },
     delete: (id) => {
-        var sql = "UPDATE transfer_details SET is_deleted = 1 WHERE id = ?";
+        var sql = "DELETE FROM $table WHERE id=?";
         var escapedValues = [id];
         return connector.execute(sql, escapedValues);
     },

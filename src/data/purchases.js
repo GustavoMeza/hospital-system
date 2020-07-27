@@ -1,3 +1,6 @@
+// Returns a module to perform CRUD operations on purchases
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO purchases (input, invoice, sanitary_license, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?);";

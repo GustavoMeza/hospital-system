@@ -1,0 +1,1 @@
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJwZXJtaXNzaW9ucyI6W10sImlhdCI6MTU5MzU0NzAwNCwiZXhwIjoxNTkzNTQ3OTA0fQ.yUR-_FPeMaD8U5V-CK6AURiKBruze0UnQNnzEy7kPD4' -d @faulty_permission.json -H 'Content-Type: Application/json' -X POST http://localhost:3000/api/permissions/

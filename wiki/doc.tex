@@ -1,0 +1,202 @@
+\hypertarget{documentation}{%
+\section{Documentation}\label{documentation}}
+
+\hypertarget{database-schema}{%
+\subsection{Database schema}\label{database-schema}}
+
+\textbf{batches}
+
+\begin{itemize}
+\item
+  Drugs are acquired in batches
+\item
+  Drugs in the same batch share the same expiration date.
+\end{itemize}
+
+\textbf{drugs}
+
+\begin{itemize}
+\item
+  Different types of drugs the hospital has.
+\item
+  Different presentations are considered different drugs.
+\end{itemize}
+
+\textbf{fill\_batches}
+
+\begin{itemize}
+\tightlist
+\item
+  Outputs caused by a prescription fill
+\end{itemize}
+
+\textbf{inputs}
+
+\begin{itemize}
+\item
+  Drug acquisition
+\item
+  Can either be by purchase, transfer or other.
+\item
+  In one input we can obtain multiple batches.
+\end{itemize}
+
+\textbf{licenses}
+
+\begin{itemize}
+\item
+  Different licenses that Doctors have attained through their career
+\item
+  Can either be professional licenses or specialties.
+\end{itemize}
+
+\textbf{outputs}
+
+\begin{itemize}
+\item
+  Drugs leaving the hospital
+\item
+  Can either be because they expired, we filled a prescription or other.
+\item
+  In one output we group drugs of the same batch.
+\item
+  Needs to be signed by a manager.
+\end{itemize}
+
+\textbf{patients}
+
+\begin{itemize}
+\tightlist
+\item
+  The patients at the hospital.
+\end{itemize}
+
+\textbf{permissions}
+
+\begin{itemize}
+\tightlist
+\item
+  Ability to perform an action on the API
+\end{itemize}
+
+\textbf{prescription\_drugs}
+
+\begin{itemize}
+\item
+  Drugs required in a prescription
+\item
+  Intake indications.
+\end{itemize}
+
+\textbf{prescription\_fills}
+
+\begin{itemize}
+\tightlist
+\item
+  Information when a prescription is filled.
+\end{itemize}
+
+\textbf{prescription\_returns}
+
+\begin{itemize}
+\tightlist
+\item
+  Information when some prescribed drugs are returned
+\end{itemize}
+
+\textbf{prescriptions}
+
+\begin{itemize}
+\tightlist
+\item
+  Prescription issued by a doctor to a patient.
+\end{itemize}
+
+\textbf{purchases}
+
+\begin{itemize}
+\tightlist
+\item
+  Additional information required if the input is a purchase.
+\end{itemize}
+
+\textbf{role\_permissions}
+
+\begin{itemize}
+\tightlist
+\item
+  Permissions that a certain role has.
+\end{itemize}
+
+\textbf{roles}
+
+\begin{itemize}
+\tightlist
+\item
+  Different roles inside the system.
+\end{itemize}
+
+\textbf{specialties}
+
+\begin{itemize}
+\tightlist
+\item
+  Additional information required if the license is a specialty
+\end{itemize}
+
+\textbf{transfers}
+
+\begin{itemize}
+\tightlist
+\item
+  Additional information required if the input is a transfer
+\end{itemize}
+
+\textbf{user\_roles}
+
+\begin{itemize}
+\tightlist
+\item
+  Assignation of users and their roles.
+\end{itemize}
+
+\textbf{users}
+
+\begin{itemize}
+\tightlist
+\item
+  Users of the system.
+\end{itemize}
+
+You can see in more detail the relationships \href{'./schema.pdf'}{here}
+
+\hypertarget{database-audit}{%
+\subsection{Database audit}\label{database-audit}}
+
+We want to be able to audit changes in the database to track unwanted
+behaviours To be able to make this audits, we keep track of all the
+changes in an entity. Our solution has two parts:
+
+\begin{itemize}
+\item
+  Persistent operations, this means to save the current state of an
+  entity before changing it. This operations are handled by the API.
+\item
+  Metadata of the changes made:
+\item
+  \textbf{created\_at} The moment of the last change to this record.
+\item
+  \textbf{created\_by} The user responsible of the last change to this
+  record.
+\item
+  \textbf{original\_id} Since we are saving snapshots of the entities,
+  these are going to have new ids. This field stores the id of the
+  original object.
+\item
+  \textbf{status}: Either \texttt{active} if the records belongs to the
+  current state of the database or \texttt{history} if the record
+  belongs to an older state of the database.
+\end{itemize}
+
+\href{https://www.codeproject.com/Articles/105768/Audit*Trail\%20-Tracing-Data-Changes-in-Database}{This
+article} explains our approach in more detail.

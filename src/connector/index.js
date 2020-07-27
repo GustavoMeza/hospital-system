@@ -1,17 +1,21 @@
 var mysql = require('mysql2/promise')
 
+// Returns a database connection pool
+// Dependencies:
+// - config: Database configuration object
 module.exports = (config) => {
 
     var poolConfig = {
-        host: config.DB_HOST,
-        user: config.DB_USER,
-        password: config.DB_PASS,
-        database: config.DB_NAME,
+        host: config.HOST,
+        user: config.USER,
+        password: config.PASS,
+        database: config.NAME,
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
     }
 
     connectionPool = mysql.createPool(poolConfig);
+
     return connectionPool;
 }
