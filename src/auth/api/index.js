@@ -1,4 +1,9 @@
+// Returns API controllers to handle auth
+// Dependencies:
+// - authServices: The auth services
 module.exports = (authServices) => ({
+
+    // Controller to handle log in requests
     login: async (req, res) => {
         var username = req.body.username;
         var password = req.body.password;
@@ -9,6 +14,8 @@ module.exports = (authServices) => ({
         var token = await authServices.createJwt(userId);
         res.json(token).send();
     },
+
+    // Controller for the middleare to authenticate / authorize
     middleware: async (req, res, next) => {
         var bearerToken = req.headers["authorization"];
         if (!bearerToken) {
