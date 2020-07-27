@@ -1,3 +1,6 @@
+// Returns a module to perform CRUD operations on permissions
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO permissions (action, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?);";

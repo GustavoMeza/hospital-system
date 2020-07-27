@@ -1,3 +1,6 @@
+// Returns a module to perform CRUD operations on patients
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO patients (file, first_name, last_name, curp, birthdate, sex, address, floor, bed, diagnostic, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";

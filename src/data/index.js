@@ -1,3 +1,6 @@
+// Instantiates the data access services and packs them together in a single object
+// Dependencies:
+// - connector: The database connection pool
 module.exports = (connector) => ({
     users : require('./users')(connector),
     roles : require('./roles')(connector),

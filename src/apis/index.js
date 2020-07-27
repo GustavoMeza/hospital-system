@@ -1,21 +1,26 @@
-module.exports = (persistentServices, dataServices) => ({
-    users : require('./users')(persistentServices, dataServices.users),
-    roles : require('./roles')(persistentServices, dataServices.roles),
-    permissions : require('./permissions')(persistentServices, dataServices.permissions),
-    rolePermissions : require('./rolePermissions')(persistentServices, dataServices.rolePermissions),
-    userRoles : require('./userRoles')(persistentServices, dataServices.userRoles),
-    licenses : require('./licenses')(persistentServices, dataServices.licenses),
-    specialties : require('./specialties')(persistentServices, dataServices.specialties),
-    drugs : require('./drugs')(persistentServices, dataServices.drugs),
-    inputs : require('./inputs')(persistentServices, dataServices.inputs),
-    batches : require('./batches')(persistentServices, dataServices.batches),
-    purchases : require('./purchases')(persistentServices, dataServices.purchases),
-    transfers : require('./transfers')(persistentServices, dataServices.transfers),
-    outputs : require('./outputs')(persistentServices, dataServices.outputs),
-    patients : require('./patients')(persistentServices, dataServices.patients),
-    prescriptions : require('./prescriptions')(persistentServices, dataServices.prescriptions),
-    prescriptionDrugs : require('./prescriptionDrugs')(persistentServices, dataServices.prescriptionDrugs),
-    prescriptionFills : require('./prescriptionFills')(persistentServices, dataServices.prescriptionFills),
-    fillBatches : require('./fillBatches')(persistentServices, dataServices.fillBatches),
-    prescriptionReturns : require('./prescriptionReturns')(persistentServices, dataServices.prescriptionReturns),
+var factory = require('./factory');
+
+// Creates API controllers to perform persistent CRUD operations
+// Dependencies:
+// - persistentServices: The persistent data access services
+module.exports = (persistentServices) => ({
+    users : factory(persistentServices.users),
+    roles : factory(persistentServices.roles),
+    permissions : factory(persistentServices.permissions),
+    rolePermissions : factory(persistentServices.rolePermissions),
+    userRoles : factory(persistentServices.userRoles),
+    licenses : factory(persistentServices.licenses),
+    specialties : factory(persistentServices.specialties),
+    drugs : factory(persistentServices.drugs),
+    inputs : factory(persistentServices.inputs),
+    batches : factory(persistentServices.batches),
+    purchases : factory(persistentServices.purchases),
+    transfers : factory(persistentServices.transfers),
+    outputs : factory(persistentServices.outputs),
+    patients : factory(persistentServices.patients),
+    prescriptions : factory(persistentServices.prescriptions),
+    prescriptionDrugs : factory(persistentServices.prescriptionDrugs),
+    prescriptionFills : factory(persistentServices.prescriptionFills),
+    fillBatches : factory(persistentServices.fillBatches),
+    prescriptionReturns : factory(persistentServices.prescriptionReturns),
 });

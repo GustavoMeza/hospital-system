@@ -1,3 +1,6 @@
+// Returns a module to perform CRUD operations on fill_batches
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO fill_batches (prescription_fill, outputs, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?);";

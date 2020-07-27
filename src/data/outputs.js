@@ -1,3 +1,6 @@
+// Returns a module to perform CRUD operations on outputs
+// Dependencies:
+// - connector: A database connection pool
 module.exports = (connector) => ({
     create: (obj) => {
         var sql = "INSERT INTO outputs (sign, batch, quantity, comment, type, status, original_id, created_at, created_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);";

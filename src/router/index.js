@@ -1,140 +1,157 @@
-module.exports = (apiServices) => {
-    var router = require('express').Router();
+var express = require('express');
 
-    // api
+// Configures the routing flow of the application
+// Dependencies:
+// - dataApis: The API controllers for performing CRUD operations
+// - authApis: The API controllers for performing Auth operations
+module.exports = (dataApis, authApis) => {
+    app = express();
+
+    // Parse json objects
+    app.use(express.json());
+    
+    //Auth API
+
+    // Log in end point
+    app.post('/login/', authApis.login);
+
+    // Require and process authentication 
+    app.use('/api/', authApis.middleware);
+
+    // Data API
     
     // users
-    router.post('/api/users/', apiServices.users.create);
-    router.get('/api/users/', apiServices.users.readAll);
-    router.get('/api/users/:id', apiServices.users.readById);
-    router.put('/api/users/', apiServices.users.update);
-    router.delete('/api/users/:id', apiServices.users.delete);
+    app.post('/api/users/', dataApis.users.create);
+    app.get('/api/users/', dataApis.users.readAll);
+    app.get('/api/users/:id', dataApis.users.readById);
+    app.put('/api/users/', dataApis.users.update);
+    app.delete('/api/users/:id', dataApis.users.delete);
 
     // roles
-    router.post('/api/roles/', apiServices.roles.create);
-    router.get('/api/roles/', apiServices.roles.readAll);
-    router.get('/api/roles/:id', apiServices.roles.readById);
-    router.put('/api/roles/', apiServices.roles.update);
-    router.delete('/api/roles/:id', apiServices.roles.delete);
+    app.post('/api/roles/', dataApis.roles.create);
+    app.get('/api/roles/', dataApis.roles.readAll);
+    app.get('/api/roles/:id', dataApis.roles.readById);
+    app.put('/api/roles/', dataApis.roles.update);
+    app.delete('/api/roles/:id', dataApis.roles.delete);
 
     // permissions
-    router.post('/api/permissions/', apiServices.permissions.create);
-    router.get('/api/permissions/', apiServices.permissions.readAll);
-    router.get('/api/permissions/:id', apiServices.permissions.readById);
-    router.put('/api/permissions/', apiServices.permissions.update);
-    router.delete('/api/permissions/:id', apiServices.permissions.delete);
+    app.post('/api/permissions/', dataApis.permissions.create);
+    app.get('/api/permissions/', dataApis.permissions.readAll);
+    app.get('/api/permissions/:id', dataApis.permissions.readById);
+    app.put('/api/permissions/', dataApis.permissions.update);
+    app.delete('/api/permissions/:id', dataApis.permissions.delete);
 
     // rolePermissions
-    router.post('/api/rolePermissions/', apiServices.rolePermissions.create);
-    router.get('/api/rolePermissions/', apiServices.rolePermissions.readAll);
-    router.get('/api/rolePermissions/:id', apiServices.rolePermissions.readById);
-    router.put('/api/rolePermissions/', apiServices.rolePermissions.update);
-    router.delete('/api/rolePermissions/:id', apiServices.rolePermissions.delete);
+    app.post('/api/rolePermissions/', dataApis.rolePermissions.create);
+    app.get('/api/rolePermissions/', dataApis.rolePermissions.readAll);
+    app.get('/api/rolePermissions/:id', dataApis.rolePermissions.readById);
+    app.put('/api/rolePermissions/', dataApis.rolePermissions.update);
+    app.delete('/api/rolePermissions/:id', dataApis.rolePermissions.delete);
 
     // userRoles
-    router.post('/api/userRoles/', apiServices.userRoles.create);
-    router.get('/api/userRoles/', apiServices.userRoles.readAll);
-    router.get('/api/userRoles/:id', apiServices.userRoles.readById);
-    router.put('/api/userRoles/', apiServices.userRoles.update);
-    router.delete('/api/userRoles/:id', apiServices.userRoles.delete);
+    app.post('/api/userRoles/', dataApis.userRoles.create);
+    app.get('/api/userRoles/', dataApis.userRoles.readAll);
+    app.get('/api/userRoles/:id', dataApis.userRoles.readById);
+    app.put('/api/userRoles/', dataApis.userRoles.update);
+    app.delete('/api/userRoles/:id', dataApis.userRoles.delete);
 
     // licenses
-    router.post('/api/licenses/', apiServices.licenses.create);
-    router.get('/api/licenses/', apiServices.licenses.readAll);
-    router.get('/api/licenses/:id', apiServices.licenses.readById);
-    router.put('/api/licenses/', apiServices.licenses.update);
-    router.delete('/api/licenses/:id', apiServices.licenses.delete);
+    app.post('/api/licenses/', dataApis.licenses.create);
+    app.get('/api/licenses/', dataApis.licenses.readAll);
+    app.get('/api/licenses/:id', dataApis.licenses.readById);
+    app.put('/api/licenses/', dataApis.licenses.update);
+    app.delete('/api/licenses/:id', dataApis.licenses.delete);
 
     // specialties
-    router.post('/api/specialties/', apiServices.specialties.create);
-    router.get('/api/specialties/', apiServices.specialties.readAll);
-    router.get('/api/specialties/:id', apiServices.specialties.readById);
-    router.put('/api/specialties/', apiServices.specialties.update);
-    router.delete('/api/specialties/:id', apiServices.specialties.delete);
+    app.post('/api/specialties/', dataApis.specialties.create);
+    app.get('/api/specialties/', dataApis.specialties.readAll);
+    app.get('/api/specialties/:id', dataApis.specialties.readById);
+    app.put('/api/specialties/', dataApis.specialties.update);
+    app.delete('/api/specialties/:id', dataApis.specialties.delete);
 
     // drugs
-    router.post('/api/drugs/', apiServices.drugs.create);
-    router.get('/api/drugs/', apiServices.drugs.readAll);
-    router.get('/api/drugs/:id', apiServices.drugs.readById);
-    router.put('/api/drugs/', apiServices.drugs.update);
-    router.delete('/api/drugs/:id', apiServices.drugs.delete);
+    app.post('/api/drugs/', dataApis.drugs.create);
+    app.get('/api/drugs/', dataApis.drugs.readAll);
+    app.get('/api/drugs/:id', dataApis.drugs.readById);
+    app.put('/api/drugs/', dataApis.drugs.update);
+    app.delete('/api/drugs/:id', dataApis.drugs.delete);
 
     // inputs
-    router.post('/api/inputs/', apiServices.inputs.create);
-    router.get('/api/inputs/', apiServices.inputs.readAll);
-    router.get('/api/inputs/:id', apiServices.inputs.readById);
-    router.put('/api/inputs/', apiServices.inputs.update);
-    router.delete('/api/inputs/:id', apiServices.inputs.delete);
+    app.post('/api/inputs/', dataApis.inputs.create);
+    app.get('/api/inputs/', dataApis.inputs.readAll);
+    app.get('/api/inputs/:id', dataApis.inputs.readById);
+    app.put('/api/inputs/', dataApis.inputs.update);
+    app.delete('/api/inputs/:id', dataApis.inputs.delete);
 
     // batches
-    router.post('/api/batches/', apiServices.batches.create);
-    router.get('/api/batches/', apiServices.batches.readAll);
-    router.get('/api/batches/:id', apiServices.batches.readById);
-    router.put('/api/batches/', apiServices.batches.update);
-    router.delete('/api/batches/:id', apiServices.batches.delete);
+    app.post('/api/batches/', dataApis.batches.create);
+    app.get('/api/batches/', dataApis.batches.readAll);
+    app.get('/api/batches/:id', dataApis.batches.readById);
+    app.put('/api/batches/', dataApis.batches.update);
+    app.delete('/api/batches/:id', dataApis.batches.delete);
 
     // purchases
-    router.post('/api/purchases/', apiServices.purchases.create);
-    router.get('/api/purchases/', apiServices.purchases.readAll);
-    router.get('/api/purchases/:id', apiServices.purchases.readById);
-    router.put('/api/purchases/', apiServices.purchases.update);
-    router.delete('/api/purchases/:id', apiServices.purchases.delete);
+    app.post('/api/purchases/', dataApis.purchases.create);
+    app.get('/api/purchases/', dataApis.purchases.readAll);
+    app.get('/api/purchases/:id', dataApis.purchases.readById);
+    app.put('/api/purchases/', dataApis.purchases.update);
+    app.delete('/api/purchases/:id', dataApis.purchases.delete);
 
     // transfers
-    router.post('/api/transfers/', apiServices.transfers.create);
-    router.get('/api/transfers/', apiServices.transfers.readAll);
-    router.get('/api/transfers/:id', apiServices.transfers.readById);
-    router.put('/api/transfers/', apiServices.transfers.update);
-    router.delete('/api/transfers/:id', apiServices.transfers.delete);
+    app.post('/api/transfers/', dataApis.transfers.create);
+    app.get('/api/transfers/', dataApis.transfers.readAll);
+    app.get('/api/transfers/:id', dataApis.transfers.readById);
+    app.put('/api/transfers/', dataApis.transfers.update);
+    app.delete('/api/transfers/:id', dataApis.transfers.delete);
 
     // outputs
-    router.post('/api/outputs/', apiServices.outputs.create);
-    router.get('/api/outputs/', apiServices.outputs.readAll);
-    router.get('/api/outputs/:id', apiServices.outputs.readById);
-    router.put('/api/outputs/', apiServices.outputs.update);
-    router.delete('/api/outputs/:id', apiServices.outputs.delete);
+    app.post('/api/outputs/', dataApis.outputs.create);
+    app.get('/api/outputs/', dataApis.outputs.readAll);
+    app.get('/api/outputs/:id', dataApis.outputs.readById);
+    app.put('/api/outputs/', dataApis.outputs.update);
+    app.delete('/api/outputs/:id', dataApis.outputs.delete);
 
     // patients
-    router.post('/api/patients/', apiServices.patients.create);
-    router.get('/api/patients/', apiServices.patients.readAll);
-    router.get('/api/patients/:id', apiServices.patients.readById);
-    router.put('/api/patients/', apiServices.patients.update);
-    router.delete('/api/patients/:id', apiServices.patients.delete);
+    app.post('/api/patients/', dataApis.patients.create);
+    app.get('/api/patients/', dataApis.patients.readAll);
+    app.get('/api/patients/:id', dataApis.patients.readById);
+    app.put('/api/patients/', dataApis.patients.update);
+    app.delete('/api/patients/:id', dataApis.patients.delete);
 
     // prescriptions
-    router.post('/api/prescriptions/', apiServices.prescriptions.create);
-    router.get('/api/prescriptions/', apiServices.prescriptions.readAll);
-    router.get('/api/prescriptions/:id', apiServices.prescriptions.readById);
-    router.put('/api/prescriptions/', apiServices.prescriptions.update);
-    router.delete('/api/prescriptions/:id', apiServices.prescriptions.delete);
+    app.post('/api/prescriptions/', dataApis.prescriptions.create);
+    app.get('/api/prescriptions/', dataApis.prescriptions.readAll);
+    app.get('/api/prescriptions/:id', dataApis.prescriptions.readById);
+    app.put('/api/prescriptions/', dataApis.prescriptions.update);
+    app.delete('/api/prescriptions/:id', dataApis.prescriptions.delete);
 
     // prescriptionDrugs
-    router.post('/api/prescriptionDrugs/', apiServices.prescriptionDrugs.create);
-    router.get('/api/prescriptionDrugs/', apiServices.prescriptionDrugs.readAll);
-    router.get('/api/prescriptionDrugs/:id', apiServices.prescriptionDrugs.readById);
-    router.put('/api/prescriptionDrugs/', apiServices.prescriptionDrugs.update);
-    router.delete('/api/prescriptionDrugs/:id', apiServices.prescriptionDrugs.delete);
+    app.post('/api/prescriptionDrugs/', dataApis.prescriptionDrugs.create);
+    app.get('/api/prescriptionDrugs/', dataApis.prescriptionDrugs.readAll);
+    app.get('/api/prescriptionDrugs/:id', dataApis.prescriptionDrugs.readById);
+    app.put('/api/prescriptionDrugs/', dataApis.prescriptionDrugs.update);
+    app.delete('/api/prescriptionDrugs/:id', dataApis.prescriptionDrugs.delete);
 
     // prescriptionFills
-    router.post('/api/prescriptionFills/', apiServices.prescriptionFills.create);
-    router.get('/api/prescriptionFills/', apiServices.prescriptionFills.readAll);
-    router.get('/api/prescriptionFills/:id', apiServices.prescriptionFills.readById);
-    router.put('/api/prescriptionFills/', apiServices.prescriptionFills.update);
-    router.delete('/api/prescriptionFills/:id', apiServices.prescriptionFills.delete);
+    app.post('/api/prescriptionFills/', dataApis.prescriptionFills.create);
+    app.get('/api/prescriptionFills/', dataApis.prescriptionFills.readAll);
+    app.get('/api/prescriptionFills/:id', dataApis.prescriptionFills.readById);
+    app.put('/api/prescriptionFills/', dataApis.prescriptionFills.update);
+    app.delete('/api/prescriptionFills/:id', dataApis.prescriptionFills.delete);
 
     // fillBatches
-    router.post('/api/fillBatches/', apiServices.fillBatches.create);
-    router.get('/api/fillBatches/', apiServices.fillBatches.readAll);
-    router.get('/api/fillBatches/:id', apiServices.fillBatches.readById);
-    router.put('/api/fillBatches/', apiServices.fillBatches.update);
-    router.delete('/api/fillBatches/:id', apiServices.fillBatches.delete);
+    app.post('/api/fillBatches/', dataApis.fillBatches.create);
+    app.get('/api/fillBatches/', dataApis.fillBatches.readAll);
+    app.get('/api/fillBatches/:id', dataApis.fillBatches.readById);
+    app.put('/api/fillBatches/', dataApis.fillBatches.update);
+    app.delete('/api/fillBatches/:id', dataApis.fillBatches.delete);
 
     // prescriptionReturns
-    router.post('/api/prescriptionReturns/', apiServices.prescriptionReturns.create);
-    router.get('/api/prescriptionReturns/', apiServices.prescriptionReturns.readAll);
-    router.get('/api/prescriptionReturns/:id', apiServices.prescriptionReturns.readById);
-    router.put('/api/prescriptionReturns/', apiServices.prescriptionReturns.update);
-    router.delete('/api/prescriptionReturns/:id', apiServices.prescriptionReturns.delete);
+    app.post('/api/prescriptionReturns/', dataApis.prescriptionReturns.create);
+    app.get('/api/prescriptionReturns/', dataApis.prescriptionReturns.readAll);
+    app.get('/api/prescriptionReturns/:id', dataApis.prescriptionReturns.readById);
+    app.put('/api/prescriptionReturns/', dataApis.prescriptionReturns.update);
+    app.delete('/api/prescriptionReturns/:id', dataApis.prescriptionReturns.delete);
 
-    return router;
+    return app;
 };

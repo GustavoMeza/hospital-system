@@ -1,9 +1,21 @@
 require('dotenv').config();
 
+// returns the configuration object
 module.exports = () => ({
-    DB_HOST: process.env.DB_HOST,
-    DB_NAME: process.env.DB_NAME,
-    DB_USER: process.env.DB_USER,
-    DB_PASS: process.env.DB_PASS,
-    APP_SECRET: process.env.APP_SECRET,
+    DB: {
+        // Host in which the database is running
+        HOST: process.env.DB_HOST,
+        // Database name
+        NAME: process.env.DB_NAME,
+        // Username to access the database
+        USER: process.env.DB_USER,
+        // Password for that username
+        PASS: process.env.DB_PASS,
+    },
+    AUTH: {
+        // Secret used to sign the JWT
+        SECRET: process.env.AUTH_SECRET,
+    },
+    // Port configuration
+    PORT: 3000,
 });

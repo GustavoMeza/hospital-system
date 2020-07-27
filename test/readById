@@ -1,1 +1,1 @@
-curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJwZXJtaXNzaW9ucyI6WzFdLCJpYXQiOjE1OTM0NzI3MzksImV4cCI6MTU5MzQ3MzYzOX0.STDZyVUVyxTqfWHdeRvA-Ps2FUpfTJN8wvHNwmxrdes' -X GET http://localhost:3000/api/permissions/18
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7fSwiaWF0IjoxNTk1ODE1Nzc2LCJleHAiOjE1OTU4MTY2NzZ9.1ElIWOVgdwhxLX3P1fYXNq2epFnCiSJe282PB-8vDM4' -X GET http://localhost:3000/api/permissions/10

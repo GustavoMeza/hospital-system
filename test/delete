@@ -1,1 +1,1 @@
-curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJwZXJtaXNzaW9ucyI6W10sImlhdCI6MTU5MzQ3NzY0NiwiZXhwIjoxNTkzNDc4NTQ2fQ.NoGbYAwDCwp6-clIflzUqxQiKK2MaaRB4jvcpCy4Qko' -X DELETE http://localhost:3000/api/permissions/11
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJpYXQiOjE1OTU4MTY2NzMsImV4cCI6MTU5NTgxNzU3M30.ae8j3VyrPUfXZyyPRcBVnpEV49huM4hIZBWA13FbEQM' -X DELETE http://localhost:3000/api/permissions/15
