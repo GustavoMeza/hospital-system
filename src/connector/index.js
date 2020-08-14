@@ -5,17 +5,18 @@ var mysql = require('mysql2/promise')
 // - config: Database configuration object
 module.exports = (config) => {
 
-    var poolConfig = {
+    var mysqlConfig = {
         host: config.HOST,
         user: config.USER,
         password: config.PASS,
         database: config.NAME,
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0,
     }
 
-    connectionPool = mysql.createPool(poolConfig);
+    var connection = mysql.createConnection(mysqlConfig);
 
-    return connectionPool;
+    var pool = {
+        execute: async (...args) => (await connection).execute(...args),
+    };
+
+    return pool;
 }

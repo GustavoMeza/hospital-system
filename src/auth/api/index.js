@@ -1,15 +1,17 @@
+var HttpError = require('http-errors')
+
 // Returns API controllers to handle auth
 // Dependencies:
 // - authServices: The auth services
 module.exports = (authServices) => ({
 
     // Controller to handle log in requests
-    login: async (req, res) => {
+    login: async (req, res, next) => {
         var username = req.body.username;
         var password = req.body.password;
         var userId = await authServices.validate(username, password);
         if(userId === null) {
-            res.status(401).send("Invalid username-password");
+            throw HttpError(401, "Invalid username or password");
         }
         var token = await authServices.createJwt(userId);
         res.json(token).send();
@@ -19,7 +21,7 @@ module.exports = (authServices) => ({
     middleware: async (req, res, next) => {
         var bearerToken = req.headers["authorization"];
         if (!bearerToken) {
-            return res.status(401).send("Access denied. No token provided.");
+            throw HttpError(401, "Authorization required");
         }
         try {
             var match = bearerToken.match(/^Bearer (.*)$/);
@@ -28,7 +30,7 @@ module.exports = (authServices) => ({
             res.locals.author = decoded.user;
             next();
         } catch (ex) {
-            return res.status(400).send("Invalid Token");
+            throw HttpError(400, "Invalid Token");
         }
     },
 });
