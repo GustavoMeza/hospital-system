@@ -4,11 +4,14 @@ var express = require('express');
 // Dependencies:
 // - dataApis: The API controllers for performing CRUD operations
 // - authApis: The API controllers for performing Auth operations
-module.exports = (dataApis, authApis) => {
+module.exports = (cors, dataApis, authApis) => {
     app = express();
 
     // Parse json objects
     app.use(express.json());
+
+    // CORS
+    app.use(cors);
     
     //Auth API
 

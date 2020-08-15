@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/GustavoMeza/hospital-system#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^5.0.0-alpha.8",
     "http-errors": "^1.8.0",
