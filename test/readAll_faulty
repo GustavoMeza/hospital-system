@@ -1,0 +1,1 @@
+curl -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjoxLCJpYXQiOjE1OTczOTI5NDAsImV4cCI6MTU5NzM5Mzg0MH0.7Fs_rhKiv2XxwPVHr4vC55xjDlC1WfaoE3pVxFJ46WM' -X GET http://localhost:3000/api/peermissions
