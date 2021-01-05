@@ -1,3 +1,4 @@
+const { Connection } = require('mysql2');
 var mysql = require('mysql2/promise')
 
 // Returns a database connection pool
@@ -12,11 +13,14 @@ module.exports = (config) => {
         database: config.NAME,
     }
 
-    var connection = mysql.createConnection(mysqlConfig);
+    var pool = mysql.createPool(mysqlConfig);
 
-    var pool = {
-        execute: async (...args) => (await connection).execute(...args),
+    var connection = {
+        execute: async (...args) => {
+            var connection = await pool.getConnection();
+            return connection.execute(...args);
+        },
     };
 
-    return pool;
+    return connection;
 }
