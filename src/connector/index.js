@@ -18,7 +18,9 @@ module.exports = (config) => {
     var connection = {
         execute: async (...args) => {
             var connection = await pool.getConnection();
-            return connection.execute(...args);
+            var result = await connection.execute(...args);
+            connection.release();
+            return result;
         },
     };
 
