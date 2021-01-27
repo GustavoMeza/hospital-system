@@ -1,26 +1,24 @@
-var factory = require('./factory');
-
-// Creates API controllers to perform persistent CRUD operations
+// Creates API controllers
 // Dependencies:
 // - persistentServices: The persistent data access services
 module.exports = (persistentServices) => ({
-    users : factory(persistentServices.users),
-    roles : factory(persistentServices.roles),
-    permissions : factory(persistentServices.permissions),
-    rolePermissions : factory(persistentServices.rolePermissions),
-    userRoles : factory(persistentServices.userRoles),
-    licenses : factory(persistentServices.licenses),
-    specialties : factory(persistentServices.specialties),
-    drugs : factory(persistentServices.drugs),
-    inputs : factory(persistentServices.inputs),
-    batches : factory(persistentServices.batches),
-    purchases : factory(persistentServices.purchases),
-    transfers : factory(persistentServices.transfers),
-    outputs : factory(persistentServices.outputs),
-    patients : factory(persistentServices.patients),
-    prescriptions : factory(persistentServices.prescriptions),
-    prescriptionDrugs : factory(persistentServices.prescriptionDrugs),
-    prescriptionFills : factory(persistentServices.prescriptionFills),
-    fillBatches : factory(persistentServices.fillBatches),
-    prescriptionReturns : factory(persistentServices.prescriptionReturns),
+    users : require('./users')(persistentServices.users),
+    roles : require('./roles')(persistentServices.roles),
+    permissions : require('./permissions')(persistentServices.permissions),
+    rolePermissions : require('./rolePermissions')(persistentServices.rolePermissions),
+    userRoles : require('./userRoles')(persistentServices.userRoles),
+    licenses : require('./licenses')(persistentServices.licenses),
+    specialties : require('./specialties')(persistentServices.specialties),
+    drugs : require('./drugs')(persistentServices.drugs),
+    inputs : require('./inputs')(persistentServices.inputs),
+    batches : require('./batches')(persistentServices.batches),
+    purchases : require('./purchases')(persistentServices.purchases),
+    transfers : require('./transfers')(persistentServices.transfers),
+    outputs : require('./outputs')(persistentServices.outputs),
+    patients : require('./patients')(persistentServices.patients),
+    prescriptions : require('./prescriptions')(persistentServices.prescriptions),
+    prescriptionDrugs : require('./prescriptionDrugs')(persistentServices.prescriptionDrugs),
+    prescriptionFills : require('./prescriptionFills')(persistentServices.prescriptionFills),
+    fillBatches : require('./fillBatches')(persistentServices.fillBatches),
+    prescriptionReturns : require('./prescriptionReturns')(persistentServices.prescriptionReturns),
 });

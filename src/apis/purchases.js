@@ -1,34 +1,34 @@
-// Api controller for ^table
+// Api controller for purchases
 // Dependencies:
-// - ^tableService: The persistent data access service for ^table
-module.exports = (^tableService) => ({
+// - purchasesService: The persistent data access service for purchases
+module.exports = (purchasesService) => ({
     create : async (req, res, next) => {
         var obj = req.body;
         var author = res.locals.author;
-        var result = await ^tableService.create(obj, author);
+        var result = await purchasesService.create(obj, author);
         res.send(result);
     },
     readAll : async (req, res, next) => {
         var author = res.locals.author;
-        var result = await ^tableService.readAll(author);
+        var result = await purchasesService.readAll(author);
         res.send(result);
     },
     readById : async (req, res, next) => {
         var id = req.params.id;
         var author = res.locals.author;
-        var result = await ^tableService.readById(id, author);
+        var result = await purchasesService.readById(id, author);
         res.send(result);
     },
     update : async (req, res, next) => {
         var obj = req.body;
         var author = res.locals.author;
-        var result = await ^tableService.update(obj, author);
+        var result = await purchasesService.update(obj, author);
         res.send(result);
     },
     delete : async (req, res, next) => {
         var id = req.params.id;
         var author = res.locals.author;
-        var result = await ^tableService.delete(id, author);
+        var result = await purchasesService.delete(id, author);
         res.send(result);
     },
 });

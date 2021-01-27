@@ -1,34 +1,34 @@
-// Api controller for ^table
+// Api controller for specialties
 // Dependencies:
-// - ^tableService: The persistent data access service for ^table
-module.exports = (^tableService) => ({
+// - specialtiesService: The persistent data access service for specialties
+module.exports = (specialtiesService) => ({
     create : async (req, res, next) => {
         var obj = req.body;
         var author = res.locals.author;
-        var result = await ^tableService.create(obj, author);
+        var result = await specialtiesService.create(obj, author);
         res.send(result);
     },
     readAll : async (req, res, next) => {
         var author = res.locals.author;
-        var result = await ^tableService.readAll(author);
+        var result = await specialtiesService.readAll(author);
         res.send(result);
     },
     readById : async (req, res, next) => {
         var id = req.params.id;
         var author = res.locals.author;
-        var result = await ^tableService.readById(id, author);
+        var result = await specialtiesService.readById(id, author);
         res.send(result);
     },
     update : async (req, res, next) => {
         var obj = req.body;
         var author = res.locals.author;
-        var result = await ^tableService.update(obj, author);
+        var result = await specialtiesService.update(obj, author);
         res.send(result);
     },
     delete : async (req, res, next) => {
         var id = req.params.id;
         var author = res.locals.author;
-        var result = await ^tableService.delete(id, author);
+        var result = await specialtiesService.delete(id, author);
         res.send(result);
     },
 });

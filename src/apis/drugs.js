@@ -1,34 +1,34 @@
-// Api controller for ^table
+// Api controller for drugs
 // Dependencies:
-// - ^tableService: The persistent data access service for ^table
-module.exports = (^tableService) => ({
+// - drugsService: The persistent data access service for drugs
+module.exports = (drugsService) => ({
     create : async (req, res, next) => {
         var obj = req.body;
         var author = res.locals.author;
-        var result = await ^tableService.create(obj, author);
+        var result = await drugsService.create(obj, author);
         res.send(result);
     },
     readAll : async (req, res, next) => {
         var author = res.locals.author;
-        var result = await ^tableService.readAll(author);
+        var result = await drugsService.readAll(author);
         res.send(result);
     },
     readById : async (req, res, next) => {
         var id = req.params.id;
         var author = res.locals.author;
-        var result = await ^tableService.readById(id, author);
+        var result = await drugsService.readById(id, author);
         res.send(result);
     },
     update : async (req, res, next) => {
         var obj = req.body;
         var author = res.locals.author;
-        var result = await ^tableService.update(obj, author);
+        var result = await drugsService.update(obj, author);
         res.send(result);
     },
     delete : async (req, res, next) => {
         var id = req.params.id;
         var author = res.locals.author;
-        var result = await ^tableService.delete(id, author);
+        var result = await drugsService.delete(id, author);
         res.send(result);
     },
 });
