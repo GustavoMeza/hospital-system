@@ -156,5 +156,8 @@ module.exports = (cors, dataApis, authApis) => {
     app.put('/api/prescriptionReturns/', dataApis.prescriptionReturns.update);
     app.delete('/api/prescriptionReturns/:id', dataApis.prescriptionReturns.delete);
 
+    // frontEnd
+    app.get('/api/frontend/prescriptionList',dataApis.frontendPrescriptionList.get);
+
     return app;
 };
