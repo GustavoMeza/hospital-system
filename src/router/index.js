@@ -158,6 +158,7 @@ module.exports = (cors, dataApis, authApis) => {
 
     // frontEnd
     app.get('/api/frontend/prescriptionList',dataApis.frontendPrescriptionList.get);
+    app.get('/api/frontend/userList',dataApis.frontendUserList.get);
 
     return app;
 };

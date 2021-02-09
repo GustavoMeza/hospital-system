@@ -22,4 +22,5 @@ module.exports = (persistentServices) => ({
     fillBatches : require('./fillBatches')(persistentServices.fillBatches),
     prescriptionReturns : require('./prescriptionReturns')(persistentServices.prescriptionReturns),
     frontendPrescriptionList : require('./frontend/prescriptionList')(persistentServices.prescriptions,persistentServices.users,persistentServices.patients),
+    frontendUserList : require('./frontend/userList')(persistentServices.users,persistentServices.userRoles,persistentServices.roles),
 });
