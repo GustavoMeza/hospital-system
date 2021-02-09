@@ -113,25 +113,25 @@ INSERT INTO user_roles (id,user,role,status,original_id,created_at,created_by) V
 
 
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"dictator",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"kendo","professional","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"dictator",3,"kendo","professional","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"septicaemia",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"harbor","professional","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"septicaemia",4,"harbor","professional","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"sand",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"ship","specialty","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"sand",1,"ship","specialty","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"proximal",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"link","specialty","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"proximal",4,"link","specialty","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"depot",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"lust","specialty","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"depot",1,"lust","specialty","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"pheasant",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"complicity","specialty","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"pheasant",4,"complicity","specialty","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"hedgehog",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"yolk","specialty","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"hedgehog",4,"yolk","specialty","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"infarction",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"fortune","specialty","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"infarction",3,"fortune","specialty","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"fan",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"traveler","professional","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"fan",1,"traveler","professional","active",NULL,NOW(),NULL);
 
-INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"essence",(SELECT id FROM users ORDER BY RAND() LIMIT 1),"pruner","professional","active",NULL,NOW(),NULL);
+INSERT INTO licenses (id,code,user,college,type,status,original_id,created_at,created_by) VALUES (DEFAULT,"essence",9,"pruner","professional","active",NULL,NOW(),NULL);
 
 
 
