@@ -1,7 +1,8 @@
 // Creates API controllers
 // Dependencies:
 // - persistentServices: The persistent data access services
-module.exports = (persistentServices) => ({
+// - business: The business logic controllers
+module.exports = (persistentServices,business) => ({
     users : require('./users')(persistentServices.users),
     roles : require('./roles')(persistentServices.roles),
     permissions : require('./permissions')(persistentServices.permissions),
@@ -21,7 +22,9 @@ module.exports = (persistentServices) => ({
     prescriptionFills : require('./prescriptionFills')(persistentServices.prescriptionFills),
     fillBatches : require('./fillBatches')(persistentServices.fillBatches),
     prescriptionReturns : require('./prescriptionReturns')(persistentServices.prescriptionReturns),
-    frontendPrescriptionList : require('./frontend/prescriptionList')(persistentServices.prescriptions,persistentServices.users,persistentServices.patients),
-    frontendUserList : require('./frontend/userList')(persistentServices.users,persistentServices.userRoles,persistentServices.roles),
-    frontendDoctors: require('./frontend/doctors')(persistentServices.users,persistentServices.licenses,persistentServices.specialties,persistentServices.userRoles,persistentServices.roles),
+
+    // Business logic apis
+    frontendPrescriptionList : require('./frontend/prescriptionList')(business.patientPrescriptions),
+    frontendUserList : require('./frontend/userList')(business.tableUsers),
+    frontendDoctors: require('./frontend/doctors')(business.doctorUsers),
 });

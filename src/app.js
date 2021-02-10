@@ -12,8 +12,12 @@ module.exports = (config) => {
     var dataServices = require('./data')(connector);
     // Persistent data access services
     var persistentServices = require('./persistent')(dataServices);
+
+    // Business logic controllers
+    var businessLogic = require('./business')(persistentServices);
+
     // API controllers to handle persistent CRUD operations
-    var dataApis = require('./apis')(persistentServices);
+    var dataApis = require('./apis')(persistentServices,businessLogic);
     
     // Auth services
     var authServices = require('./auth/services')(persistentServices, config.AUTH);
