@@ -23,5 +23,5 @@ module.exports = (persistentServices) => ({
     prescriptionReturns : require('./prescriptionReturns')(persistentServices.prescriptionReturns),
     frontendPrescriptionList : require('./frontend/prescriptionList')(persistentServices.prescriptions,persistentServices.users,persistentServices.patients),
     frontendUserList : require('./frontend/userList')(persistentServices.users,persistentServices.userRoles,persistentServices.roles),
-    frontendDoctorList: require('./frontend/doctorList')(persistentServices.users,persistentServices.licenses,persistentServices.specialties,persistentServices.userRoles,persistentServices.roles),
+    frontendDoctors: require('./frontend/doctors')(persistentServices.users,persistentServices.licenses,persistentServices.specialties,persistentServices.userRoles,persistentServices.roles),
 });
