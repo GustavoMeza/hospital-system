@@ -13,13 +13,6 @@ module.exports = (patientsService) => ({
             domicilio: patient.address,
             edad: patient.birthdate, // To do: cambiar a edad
             sexo: patient.sex,
-            piso: patient.floor,
-            cama: patient.bed,
-            diagnostico: patient.diagnostic,
-            status: patient.status,
-            id_original: patient.original_id,
-            fecha_creacion: patient.created_at,
-            creado_por: patient.created_by,
         }
 
         return result;
