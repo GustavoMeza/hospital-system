@@ -24,6 +24,22 @@ var getHash = (password, salt) => {
 // - config: Authentication configuration object for secrets
 module.exports = (persistentServices, config) => ({
 
+    // Creates hash and salt for a given password to hide it
+    // Returns:
+    // - salt: a salt string
+    // - hash: the hashed value of the password using the salt
+    // Arguments:
+    // - password: the password that we are going to hide
+    hidePassword: (password) => {
+        var salt = getSalt();
+        var hash = getHash(password,salt);
+        var hiddenPassword = {
+            salt: salt,
+            hash: hash,
+        }
+        return hiddenPassword;
+    },
+
     // Validates a username password pair
     // Returns:
     // - user id if the validation was succesfull
