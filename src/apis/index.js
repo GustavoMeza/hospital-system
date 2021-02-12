@@ -27,4 +27,5 @@ module.exports = (persistentServices,business) => ({
     frontendPrescriptionList : require('./frontend/prescriptionList')(business.patientPrescriptions),
     frontendUserList : require('./frontend/userList')(business.tableUsers),
     frontendDoctors: require('./frontend/doctors')(business.doctorUsers),
+    frontendPrescriptions: require('./frontend/prescriptions')(business.prescriptions),
 });
