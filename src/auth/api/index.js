@@ -17,6 +17,22 @@ module.exports = (authServices) => ({
         res.json(token).send();
     },
 
+    // Controller to handle log in requests
+    isTokenValid: async (req, res, next) => {
+        var bearerToken = req.headers["authorization"];
+        if (!bearerToken) {
+            throw HttpError(401, "Authorization required");
+        }
+        try {
+            var match = bearerToken.match(/^Bearer (.*)$/);
+            var token = match[1];
+            await authServices.decodeJwt(token);
+            res.send(true);
+        } catch (ex) {
+            res.send(false);
+        }
+    },
+
     // Controller for the middleare to authenticate / authorize
     middleware: async (req, res, next) => {
         var bearerToken = req.headers["authorization"];

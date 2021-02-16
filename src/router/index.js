@@ -17,6 +17,9 @@ module.exports = (cors, dataApis, authApis) => {
 
     // Log in end point
     app.post('/login/', authApis.login);
+    
+    // Know if the jwt is valid
+    app.get('/api/isTokenValid/', authApis.isTokenValid);
 
     // Require and process authentication 
     app.use('/api/', authApis.middleware);
