@@ -2,15 +2,16 @@
 // Dependencies:
 // - services: The persistent data access services
 module.exports = (services) => {
+    var drugsBusinessLogic = require('./drugs')(services.prescriptionDrugs,services.drugs);
     var licensesBusinessLogic = require('./licenses')(services.licenses);
     var patientPrescriptionsBusinessLogic = require('./patientPrescriptions')(services.prescriptions,services.users,services.patients);
     var rolesBusinessLogic = require('./roles')(services.userRoles,services.roles);
     var specialtiesBusinessLogic = require('./specialties')(services.specialties,licensesBusinessLogic);
     var doctorsBusinessLogic = require('./doctors')(services.users,licensesBusinessLogic,specialtiesBusinessLogic);
     var doctorUsersBusinessLogic = require('./doctorUsers')(services.users,doctorsBusinessLogic,rolesBusinessLogic);
-    var tableUsersBusinessLogic = require('./tableUsers')(services.users,rolesBusinessLogic);
     var patientsBusinessLogic = require('./patients')(services.patients); 
-    var prescriptionsBusinessLogic = require('./prescriptions')(services.prescriptions,patientsBusinessLogic,doctorsBusinessLogic);
+    var prescriptionsBusinessLogic = require('./prescriptions')(services.prescriptions,patientsBusinessLogic,doctorsBusinessLogic,drugsBusinessLogic);
+    var tableUsersBusinessLogic = require('./tableUsers')(services.users,rolesBusinessLogic);
     
     /* SI QUIERES PROBAR CÓDIGO, DESCOMENTA ESTAS LINEAS
     (async ()=>{

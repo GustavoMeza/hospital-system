@@ -3,7 +3,8 @@
 // - prescriptionsService: The persistent data access service for prescriptions
 // - patientsBusinessLogic: Business logic to manage patients
 // - doctorsBusinessLogic: Business logic to manage doctors
-module.exports = (prescriptionService, patientsBusinessLogic, doctorsBusinessLogic) => ({
+// - drugsBusinessLogic: Business logic to manage doctors
+module.exports = (prescriptionService, patientsBusinessLogic, doctorsBusinessLogic, drugsBusinessLogic) => ({
     readById : async (id,author) => {
         var prescription = await prescriptionService.readById(id, author);
         
@@ -14,8 +15,8 @@ module.exports = (prescriptionService, patientsBusinessLogic, doctorsBusinessLog
             paciente: await patientsBusinessLogic.readById(prescription.patient),
             medico: await doctorsBusinessLogic.readById(prescription.doctor),
             diagnostico: "",
-            medicamentos: [],
-            indicaciones: "",
+            medicamentos: await drugsBusinessLogic.readByPrescriptionId(prescription.id),
+            indicaciones: prescription.comments,
         }
 
         return result;
