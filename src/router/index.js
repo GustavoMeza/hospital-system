@@ -160,8 +160,6 @@ module.exports = (cors, dataApis, authApis) => {
     app.delete('/api/prescriptionReturns/:id', dataApis.prescriptionReturns.delete);
 
     // frontEnd
-    app.get('/api/frontend/prescriptionList',dataApis.frontendPrescriptionList.readAll);
-    app.get('/api/frontend/userList',dataApis.frontendUserList.readAll);
     app.get('/api/frontend/doctors',dataApis.frontendDoctors.readAll);
     app.get('/api/frontend/doctors/:id',dataApis.frontendDoctors.readById);
     app.get('/api/frontend/whoami',dataApis.frontendDoctors.readByMyId);

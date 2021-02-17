@@ -24,8 +24,6 @@ module.exports = (persistentServices,business) => ({
     prescriptionReturns : require('./prescriptionReturns')(persistentServices.prescriptionReturns),
 
     // Business logic apis
-    frontendPrescriptionList : require('./frontend/prescriptionList')(business.patientPrescriptions),
-    frontendUserList : require('./frontend/userList')(business.tableUsers),
     frontendDoctors: require('./frontend/doctors')(business.doctorUsers),
     frontendPrescriptions: require('./frontend/prescriptions')(business.prescriptions),
 });
