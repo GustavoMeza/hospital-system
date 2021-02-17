@@ -21,6 +21,6 @@ module.exports = (licensesService) => ({
     readProfessionalLicenseByUserId : async(id,author) => {
         var licenses = await licensesService.readAll(author);
         var result = licenses.find(license => license.type == PROFESSIONAL_LICENSE && license.user == id);
-        return licenseWrapper(result);
+        return result ? licenseWrapper(result) : null;
     },
 });

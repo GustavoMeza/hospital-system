@@ -7,6 +7,7 @@ module.exports = (usersService,licensesBusinessLogic,specialtiesBusinessLogic) =
     readById : async (id,author) => {
         var user = await usersService.readById(id,author);
         var myProfessionalLicense = await licensesBusinessLogic.readProfessionalLicenseByUserId(id,author);
+        if(myProfessionalLicense == null) return null;
         var doctor = {
             id: user.id,
             nombre: `${user.first_name} ${user.last_name}`,
