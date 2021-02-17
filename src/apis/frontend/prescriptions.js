@@ -17,4 +17,12 @@ module.exports = (prescriptionsBusinessLogic) => ({
 
         res.send(result);
     },
+    readByUserId : async (req, res, next) => {
+        var author = res.locals.author;
+        var id = req.params.id;
+
+        var result = await prescriptionsBusinessLogic.readByUserId(id, author);
+
+        res.send(result);
+    },
 });

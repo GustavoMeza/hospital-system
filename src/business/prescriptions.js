@@ -27,8 +27,20 @@ module.exports = (prescriptionService, patientsBusinessLogic, doctorsBusinessLog
         var wrappedPrescriptions = await Promise.all(prescriptions.map(wrapPresctiption));
         return wrappedPrescriptions;
     }
+    var readByUserId = async (id,author) => {
+        var prescriptions = await prescriptionService.readAll(author);
+
+        var myPrescriptions = prescriptions
+            .filter(prescription => prescription.doctor==id);
+        
+        var wrappedPrescriptions = await Promise.all(myPrescriptions.map(wrapPresctiption));
+
+        return wrappedPrescriptions;
+        
+    }
     return {
         readAll: readAll,
         readById: readById,
+        readByUserId: readByUserId,
     }
 };

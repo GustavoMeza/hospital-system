@@ -165,6 +165,7 @@ module.exports = (cors, dataApis, authApis) => {
     app.get('/api/frontend/whoami',dataApis.frontendDoctors.readByMyId);
     app.get('/api/frontend/prescriptions/',dataApis.frontendPrescriptions.readAll);
     app.get('/api/frontend/prescriptions/:id',dataApis.frontendPrescriptions.readById);
+    app.get('/api/frontend/prescriptions/byDoctorId/:id',dataApis.frontendPrescriptions.readByUserId);
 
     return app;
 };
