@@ -17,4 +17,11 @@ module.exports = (doctorUsersBusinessLogic) => ({
 
         res.send(result);
     },
+    readByMyId : async (req, res, next) => {
+        var author = res.locals.author;
+
+        var result = await doctorUsersBusinessLogic.readById(author, author);
+
+        res.send(result);
+    },
 });
