@@ -8,7 +8,7 @@ module.exports = (usersService,licensesBusinessLogic,specialtiesBusinessLogic) =
         var user = await usersService.readById(id,author);
         var myProfessionalLicense = await licensesBusinessLogic.readProfessionalLicenseByUserId(id,author);
         var doctor = {
-            id: id,
+            id: user.id,
             nombre: `${user.first_name} ${user.last_name}`,
             cedula: myProfessionalLicense.code,
             universidad: myProfessionalLicense.college,

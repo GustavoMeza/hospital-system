@@ -7,7 +7,6 @@ module.exports = (usersService,doctorsBusinessLogic,rolesBusinessLogic) => ({
     readById : async (id,author) => {
         var user = await usersService.readById(id,author);
         var doctorUser={
-            id: id,
             usuario: user.username,
             contrasenia: '',
             cargo: await rolesBusinessLogic.readByUserId(id,author),
