@@ -86,7 +86,7 @@ CREATE TABLE `drugs` (
 
 LOCK TABLES `drugs` WRITE;
 /*!40000 ALTER TABLE `drugs` DISABLE KEYS */;
-INSERT INTO `drugs` VALUES (1,'injunction','maniac','folk','active',NULL,'2021-02-01 17:39:30',NULL),(2,'veil','jeans','pattypan','active',NULL,'2021-02-01 17:39:31',NULL),(3,'dioxide','face','cancer','active',NULL,'2021-02-01 17:39:31',NULL),(4,'hops','philosopher','pajamas','active',NULL,'2021-02-01 17:39:31',NULL),(5,'overview','headache','glockenspiel','active',NULL,'2021-02-01 17:39:31',NULL),(6,'spleen','idiom','adaptation','active',NULL,'2021-02-01 17:39:31',NULL),(7,'cassock','platter','hold','active',NULL,'2021-02-01 17:39:31',NULL),(8,'reprocessing','grand','alliance','active',NULL,'2021-02-01 17:39:31',NULL),(9,'baseboard','watercress','cancer','active',NULL,'2021-02-01 17:39:31',NULL),(10,'border','raincoat','powder','active',NULL,'2021-02-01 17:39:31',NULL);
+INSERT INTO `drugs` VALUES (1,'uykqgj96d18','Synthroid ','Tablets','active',NULL,'2021-02-01 17:39:30',NULL),(2,'iax09onfdbl','Crestor','Tablets','active',NULL,'2021-02-01 17:39:31',NULL),(3,'c5v0nbx29a8','Ventolin HFA ','Spray','active',NULL,'2021-02-01 17:39:31',NULL),(4,'sm9y6qb5v41','Nexium','Tablets','active',NULL,'2021-02-01 17:39:31',NULL),(5,'6gcj37sbre2','Advair Diskus','Spray','active',NULL,'2021-02-01 17:39:31',NULL),(6,'5uo6qac32sk','Lantus Solostar','Spray','active',NULL,'2021-02-01 17:39:31',NULL),(7,'o3s7yv8r4xp','Vyvanse ','Tablets','active',NULL,'2021-02-01 17:39:31',NULL),(8,'79ril2qozm4','Lyrica ','Tablets','active',NULL,'2021-02-01 17:39:31',NULL),(9,'nr6e5wchfqj','Spiriva Handihaler','Spray','active',NULL,'2021-02-01 17:39:31',NULL),(10,'mrjuo3a8tx0','Januvia','Tablets','active',NULL,'2021-02-01 17:39:31',NULL);
 /*!40000 ALTER TABLE `drugs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +195,7 @@ CREATE TABLE `licenses` (
 
 LOCK TABLES `licenses` WRITE;
 /*!40000 ALTER TABLE `licenses` DISABLE KEYS */;
-INSERT INTO `licenses` VALUES (1,'59pbbrr7rjbbt',6,'Australasian College for Emergency Medicine','professional','active',NULL,'2021-02-01 17:39:30',NULL),(2,'58sbbfh4dybbs',9,'Australasian College of Dermatologists','professional','active',NULL,'2021-02-01 17:39:30',NULL),(3,'89pbbss2wzbbt',8,'Australasian College of Sport and Exercise Physicians','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(4,'96vbbtb4yzbbz',1,'Australian and New Zealand College of Anaesthetists','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(5,'27fbbgp6mjbbh',5,'Australian College of Rural and Remote Medicine','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(6,'47kbbxm6zwbbw',7,'College of Intensive Care Medicine','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(7,'59hbbcf3wtbbg',9,'Royal Australasian College of Medical Administrators','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(8,'82tbbmb5qxbbg',8,'Royal Australasian College of Physicians','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(9,'53qbbmt7mgbbx',5,'Royal Australasian College of Surgeons','professional','active',NULL,'2021-02-01 17:39:30',NULL),(10,'82cbbfg7fgbbh',4,'Royal Australian and New Zealand College of Obstetricians and Gynaecologists','professional','active',NULL,'2021-02-01 17:39:30',NULL);
+INSERT INTO `licenses` VALUES (1,'59pbbrr7rjbbt',6,'Australasian College for Emergency Medicine','professional','active',NULL,'2021-02-01 17:39:30',NULL),(2,'58sbbfh4dybbs',1,'Australasian College of Dermatologists','professional','active',NULL,'2021-02-01 17:39:30',NULL),(3,'89pbbss2wzbbt',8,'Australasian College of Sport and Exercise Physicians','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(4,'96vbbtb4yzbbz',2,'Australian and New Zealand College of Anaesthetists','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(5,'27fbbgp6mjbbh',5,'Australian College of Rural and Remote Medicine','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(6,'47kbbxm6zwbbw',7,'College of Intensive Care Medicine','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(7,'59hbbcf3wtbbg',9,'Royal Australasian College of Medical Administrators','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(8,'82tbbmb5qxbbg',8,'Royal Australasian College of Physicians','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(9,'53qbbmt7mgbbx',5,'Royal Australasian College of Surgeons','specialty','active',NULL,'2021-02-01 17:39:30',NULL),(10,'82cbbfg7fgbbh',4,'Royal Australian and New Zealand College of Obstetricians and Gynaecologists','professional','active',NULL,'2021-02-01 17:39:30',NULL);
 /*!40000 ALTER TABLE `licenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,7 +308,7 @@ CREATE TABLE `permissions` (
 
 LOCK TABLES `permissions` WRITE;
 /*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
-INSERT INTO `permissions` VALUES (1,'day','active',NULL,'2021-02-01 17:39:30',NULL),(2,'almighty','active',NULL,'2021-02-01 17:39:30',NULL),(3,'speakerphone','active',NULL,'2021-02-01 17:39:30',NULL),(4,'cranberry','active',NULL,'2021-02-01 17:39:30',NULL),(5,'welcome','active',NULL,'2021-02-01 17:39:30',NULL),(6,'cheer','active',NULL,'2021-02-01 17:39:30',NULL),(7,'dinghy','active',NULL,'2021-02-01 17:39:30',NULL),(8,'rivulet','active',NULL,'2021-02-01 17:39:30',NULL),(9,'micronutrient','active',NULL,'2021-02-01 17:39:30',NULL),(10,'residence','active',NULL,'2021-02-01 17:39:30',NULL);
+INSERT INTO `permissions` VALUES (1,'day','active',NULL,'2021-02-01 17:39:30',NULL),(2,'almighty','active',NULL,'2021-02-01 17:39:30',NULL),(3,'speakerphone','active',NULL,'2021-02-01 17:39:30',NULL),(4,'cranberry','active',NULL,'2021-02-01 17:39:30',NULL),(5,'welcome','active',NULL,'2021-02-01 17:39:30',NULL),(6,'cheer','active',NULL,'2021-02-01 17:39:30',NULL);
 /*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,7 +538,7 @@ CREATE TABLE `role_permissions` (
 
 LOCK TABLES `role_permissions` WRITE;
 /*!40000 ALTER TABLE `role_permissions` DISABLE KEYS */;
-INSERT INTO `role_permissions` VALUES (1,1,4,'active',NULL,'2021-02-01 17:39:30',NULL),(2,2,4,'active',NULL,'2021-02-01 17:39:30',NULL),(3,10,2,'active',NULL,'2021-02-01 17:39:30',NULL),(4,10,6,'active',NULL,'2021-02-01 17:39:30',NULL),(5,8,1,'active',NULL,'2021-02-01 17:39:30',NULL),(6,8,9,'active',NULL,'2021-02-01 17:39:30',NULL),(7,9,8,'active',NULL,'2021-02-01 17:39:30',NULL),(8,4,3,'active',NULL,'2021-02-01 17:39:30',NULL),(9,1,10,'active',NULL,'2021-02-01 17:39:30',NULL),(10,7,9,'active',NULL,'2021-02-01 17:39:30',NULL);
+INSERT INTO `role_permissions` VALUES (1,1,4,'active',NULL,'2021-02-01 17:39:30',NULL),(2,2,4,'active',NULL,'2021-02-01 17:39:30',NULL),(3,1,2,'active',NULL,'2021-02-01 17:39:30',NULL),(4,1,6,'active',NULL,'2021-02-01 17:39:30',NULL),(5,1,1,'active',NULL,'2021-02-01 17:39:30',NULL),(6,1,1,'active',NULL,'2021-02-01 17:39:30',NULL),(7,1,1,'active',NULL,'2021-02-01 17:39:30',NULL),(8,4,3,'active',NULL,'2021-02-01 17:39:30',NULL),(9,1,1,'active',NULL,'2021-02-01 17:39:30',NULL),(10,1,1,'active',NULL,'2021-02-01 17:39:30',NULL);
 /*!40000 ALTER TABLE `role_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -570,7 +570,7 @@ CREATE TABLE `roles` (
 
 LOCK TABLES `roles` WRITE;
 /*!40000 ALTER TABLE `roles` DISABLE KEYS */;
-INSERT INTO `roles` VALUES (1,'sunshine','active',NULL,'2021-02-01 17:39:30',NULL),(2,'corn','active',NULL,'2021-02-01 17:39:30',NULL),(3,'command','active',NULL,'2021-02-01 17:39:30',NULL),(4,'prow','active',NULL,'2021-02-01 17:39:30',NULL),(5,'squash','active',NULL,'2021-02-01 17:39:30',NULL),(6,'log','active',NULL,'2021-02-01 17:39:30',NULL),(7,'raven','active',NULL,'2021-02-01 17:39:30',NULL),(8,'insight','active',NULL,'2021-02-01 17:39:30',NULL),(9,'cayenne','active',NULL,'2021-02-01 17:39:30',NULL),(10,'illegal','active',NULL,'2021-02-01 17:39:30',NULL);
+INSERT INTO `roles` VALUES (1,'Doctor','active',NULL,'2021-02-01 17:39:30',NULL),(2,'Doctor Jefe','active',NULL,'2021-02-01 17:39:30',NULL),(3,'Farmacia','active',NULL,'2021-02-01 17:39:30',NULL),(4,'Responsable Sanitario','active',NULL,'2021-02-01 17:39:30',NULL),(5,'Recepcion','active',NULL,'2021-02-01 17:39:30',NULL),(6,'Admin','active',NULL,'2021-02-01 17:39:30',NULL);
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -677,7 +677,7 @@ CREATE TABLE `user_roles` (
 
 LOCK TABLES `user_roles` WRITE;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
-INSERT INTO `user_roles` VALUES (1,9,4,'active',NULL,'2021-02-01 17:39:30',NULL),(2,1,7,'active',NULL,'2021-02-01 17:39:30',NULL),(3,2,1,'active',NULL,'2021-02-01 17:39:30',NULL),(4,8,8,'active',NULL,'2021-02-01 17:39:30',NULL),(5,10,4,'active',NULL,'2021-02-01 17:39:30',NULL),(6,8,9,'active',NULL,'2021-02-01 17:39:30',NULL),(7,10,8,'active',NULL,'2021-02-01 17:39:30',NULL),(8,9,4,'active',NULL,'2021-02-01 17:39:30',NULL),(9,8,5,'active',NULL,'2021-02-01 17:39:30',NULL),(10,6,2,'active',NULL,'2021-02-01 17:39:30',NULL);
+INSERT INTO `user_roles` VALUES (1,9,4,'active',NULL,'2021-02-01 17:39:30',NULL),(2,1,1,'active',NULL,'2021-02-01 17:39:30',NULL),(3,2,5,'active',NULL,'2021-02-01 17:39:30',NULL),(4,5,3,'active',NULL,'2021-02-01 17:39:30',NULL),(5,10,4,'active',NULL,'2021-02-01 17:39:30',NULL),(6,4,1,'active',NULL,'2021-02-01 17:39:30',NULL),(7,3,3,'active',NULL,'2021-02-01 17:39:30',NULL),(8,9,4,'active',NULL,'2021-02-01 17:39:30',NULL),(9,8,5,'active',NULL,'2021-02-01 17:39:30',NULL),(10,6,2,'active',NULL,'2021-02-01 17:39:30',NULL);
 /*!40000 ALTER TABLE `user_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -727,4 +727,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-02-15 13:32:22
+-- Dump completed on 2021-02-18 12:18:06
