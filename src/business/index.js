@@ -8,7 +8,7 @@ module.exports = (services) => {
     var specialtiesBusinessLogic = require('./specialties')(services.specialties,licensesBusinessLogic);
     var doctorsBusinessLogic = require('./doctors')(services.users,licensesBusinessLogic,specialtiesBusinessLogic);
     var doctorUsersBusinessLogic = require('./doctorUsers')(services.users,doctorsBusinessLogic,rolesBusinessLogic);
-    var patientsBusinessLogic = require('./patients')(services.patients); 
+    var patientsBusinessLogic = require('./patients')(services.patients,patientsBusinessLogic); 
     var prescriptionsBusinessLogic = require('./prescriptions')(services.prescriptions,patientsBusinessLogic,doctorsBusinessLogic,drugsBusinessLogic);
     
     /* SI QUIERES PROBAR CÓDIGO, DESCOMENTA ESTAS LINEAS
@@ -17,8 +17,16 @@ module.exports = (services) => {
         console.log(await prescriptionsBusinessLogic.readById(3,null));
     })(); */
 
+    /*
+    (async ()=>{
+        //console.log(await patientsBusinessLogic.readById(1,null));
+        //console.log(await prescriptionsBusinessLogic.readById(3,null));
+        console.log(await patientsBusinessLogic.readAll());
+    })();*/
+
     return {
         doctorUsers: doctorUsersBusinessLogic,
         prescriptions: prescriptionsBusinessLogic,
+        patients: patientsBusinessLogic,//
     }
 };

@@ -14,7 +14,23 @@ module.exports = (patientsService) => ({
             edad: patient.birthdate, // To do: cambiar a edad
             sexo: patient.sex,
         }
-
         return result;
+    },
+    readAll : async (id,author)=>{
+
+        var patient = await patientsService.readById(id, author);
+
+        var result1={
+            id: patient.id,
+            nombre: patient.first_name,
+            curp: patient.curp,
+            edad: patient.birthdate, // To do: cambiar a edad
+            sexo: patient.sex,
+            domicilio: patient.address,
+        }
+        return  result1;
     }
+
+
+
 });
