@@ -127,12 +127,9 @@ module.exports = (cors, dataApis, authApis) => {
     // prescriptions
     app.post('/api/prescriptions/', dataApis.prescriptions.create);
     app.get('/api/prescriptions/', dataApis.prescriptions.readAll);
-    app.get('/api/prescriptions', dataApis.prescriptions.readAll);//
-    app.get('/api/prescriptions/', dataApis.prescriptions.readAll);
     app.get('/api/prescriptions/:id', dataApis.prescriptions.readById);
     app.put('/api/prescriptions/', dataApis.prescriptions.update);
     app.delete('/api/prescriptions/:id', dataApis.prescriptions.delete);
-    
 
     // prescriptionDrugs
     app.post('/api/prescriptionDrugs/', dataApis.prescriptionDrugs.create);
